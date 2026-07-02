@@ -128,9 +128,9 @@ const TicketRequest = ({ Alert }) => {
       timeout: null,
       datasis: {
         transaction_id: ticket.transaction_id,
-        payler_url: ticket.payler_url,
       },
-      deeplink: ticket.deeplink,
+      paymentType: "finik",
+      productType: "air",
     };
     dispatch(deepAction(datasing));
     navigate("/payment");

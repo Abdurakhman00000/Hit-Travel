@@ -1,0 +1,38 @@
+.payment_success_page {
+  min-height: 100vh;
+  background: #f5f8ff;
+  padding-bottom: 100px;
+}
+
+.payment_success_card {
+  margin-top: 24px;
+  background: #fff;
+  border-radius: 16px;
+  padding: 28px 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  box-shadow: 0 8px 24px rgba(8, 31, 44, 0.06);
+}
+
+.payment_success_card h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--black);
+}
+
+.payment_success_card p {
+  color: #5a6b7d;
+  line-height: 1.5;
+}
+
+.payment_success_download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  max-width: 280px;
+}

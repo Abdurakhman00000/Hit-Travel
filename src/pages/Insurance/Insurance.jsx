@@ -5,24 +5,20 @@ import Loader from "../../components/UI/Loader/Loader";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate, useSearchParams } from "react-router-dom";
 import {
-  calculatePrice,
-  createContract,
-  activateContract,
-  uploadInspection,
-  fetchDocumentWithRetry,
-  getUsePurposes,
-  getTravelRegions,
-  getInsurancePrograms,
-  getActivityCoefficients,
-} from "../../api/nsk/insuranceService";
-import { getNskErrorMessage, isNskConfigured } from "../../api/nsk/client";
+  calculateInsurancePrice,
+  createInsurancePolicy,
+  loadInsuranceDictionaries,
+  getApiErrorMessage,
+  submitKaskoInspection,
+  getPolicyStatus,
+} from "../../api/insuranceHitTravel";
+import { deepAction } from "../../store/actions/deep";
 import {
   insuranceDictionariesError,
   insuranceDictionariesLoading,
   insuranceDictionariesSuccess,
   insuranceReset,
   insuranceSetContract,
-  insuranceSetDocument,
   insuranceSetPrice,
 } from "../../store/actions/insuranceAction";
 import {
@@ -30,28 +26,47 @@ import {
   createInitialForm,
   INSURANCE_PRODUCTS,
   INSPECTION_PHOTO_FIELDS,
+  KASKO_RISKS,
   OSAGO_DRIVERS_TYPES,
   PRODUCT_LABELS,
+  STEP_LABELS_BY_PRODUCT,
   TRAVEL_RISKS,
   WIZARD_STEPS,
 } from "./constants";
-import {
-  buildContractPayload,
-  kaskoRequiresInspection,
-} from "./buildContractPayload";
+import { buildHitTravelPayload } from "./buildHitTravelPayload";
 import { addDaysToDateStr, todayDateStr } from "../../utils/epochDate";
-import { FaCheck, FaDownload } from "react-icons/fa6";
 
 // TODO: вернуть true после тестирования
 const SKIP_FORM_VALIDATION = true;
 
-const STEP_LABELS = [
-  "Страхователь",
-  "Объект страхования",
-  "Расчёт и оформление",
-  "Осмотр",
-  "Готово",
-];
+function goToFinikPayment(dispatch, navigate, created, formProduct) {
+  dispatch(insuranceSetContract(created));
+  dispatch(
+    insuranceSetPrice({
+      net_premium: created.net_premium,
+      sales_tax: created.sales_tax,
+      gross_premium:
+        created.gross_premium ?? created.total ?? created.amount,
+    })
+  );
+  dispatch(
+    deepAction({
+      amount: Number(
+        created.gross_premium ?? created.total ?? created.amount ?? 0
+      ),
+      currency: "KGS",
+      status: created.status,
+      datasis: {
+        transaction_id: created.transaction_id,
+      },
+      paymentType: "finik",
+      productType: "insurance",
+      policyId: created.policy_id,
+      insuranceProduct: formProduct,
+    })
+  );
+  navigate("/payment");
+}
 
 function Field({ label, children, required }) {
   return (
@@ -69,7 +84,7 @@ const Insurance = ({ Alert }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const [searchParams] = useSearchParams();
-  const { usePurposes, travelRegions, programs, activities, price, contract, document, loadingDictionaries } =
+  const { usePurposes, travelRegions, programs, activities, price, contract, loadingDictionaries } =
     useSelector((state) => state.insurance);
 
   const initialProduct =
@@ -78,8 +93,21 @@ const Insurance = ({ Alert }) => {
   const [step, setStep] = useState(WIZARD_STEPS.POLICYHOLDER);
   const [form, setForm] = useState(() => createInitialForm(initialProduct));
   const [loading, setLoading] = useState(false);
-  const [inspectionStatus, setInspectionStatus] = useState(null);
+  const [apiError, setApiError] = useState("");
   const [stepError, setStepError] = useState("");
+  const [createdPolicy, setCreatedPolicy] = useState(null);
+  const [inspectionStatus, setInspectionStatus] = useState(null);
+  const [inspectionSubmitted, setInspectionSubmitted] = useState(false);
+
+  const kaskoNeedsInspection =
+    form.product === INSURANCE_PRODUCTS.KASKO && !form.car.program_id;
+
+  const stepLabels = useMemo(() => {
+    if (kaskoNeedsInspection || createdPolicy?.needs_inspection) {
+      return STEP_LABELS_BY_PRODUCT.KASKO_WITH_INSPECTION;
+    }
+    return STEP_LABELS_BY_PRODUCT.DEFAULT;
+  }, [kaskoNeedsInspection, createdPolicy?.needs_inspection]);
 
   const driversTypes = useMemo(
     () =>
@@ -112,8 +140,23 @@ const Insurance = ({ Alert }) => {
     ) {
       setForm(createInitialForm(productParam));
       setStep(WIZARD_STEPS.POLICYHOLDER);
+      setCreatedPolicy(null);
+      setInspectionStatus(null);
+      setInspectionSubmitted(false);
+      loadDictionariesForProduct(productParam);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchParams]);
+
+  async function loadDictionariesForProduct(product) {
+    dispatch(insuranceDictionariesLoading());
+    try {
+      const dictionaries = await loadInsuranceDictionaries(product);
+      dispatch(insuranceDictionariesSuccess(dictionaries));
+    } catch (error) {
+      dispatch(insuranceDictionariesError(getApiErrorMessage(error)));
+    }
+  }
 
   useEffect(() => {
     if (form.validity_period_type === "ANNEALED_DATE" && !form.started_at) {
@@ -128,50 +171,30 @@ const Insurance = ({ Alert }) => {
 
   useEffect(() => {
     setStepError("");
+    setApiError("");
   }, [form]);
 
   async function loadDictionaries() {
-    if (!isNskConfigured()) {
-      dispatch(
-        insuranceDictionariesError(
-          "Не удалось загрузить справочники страхования"
-        )
-      );
-      return;
-    }
-
     dispatch(insuranceDictionariesLoading());
     try {
-      const [purposes, regions, programList, activityList] = await Promise.all([
-        getUsePurposes(),
-        getTravelRegions(),
-        getInsurancePrograms(),
-        getActivityCoefficients(),
-      ]);
-      dispatch(
-        insuranceDictionariesSuccess({
-          usePurposes: purposes,
-          travelRegions: regions.filter((r) => r.key !== "KG"),
-          programs: programList,
-          activities: activityList,
-        })
-      );
+      const dictionaries = await loadInsuranceDictionaries(form.product);
+      dispatch(insuranceDictionariesSuccess(dictionaries));
       setForm((prev) => ({
         ...prev,
         car: {
           ...prev.car,
-          use_purpose_id: purposes[0]?.id || "",
+          use_purpose_id: dictionaries.usePurposes[0]?.id || "",
         },
         travel: {
           ...prev.travel,
-          region_id: regions.find((r) => r.key !== "KG")?.id || "",
+          region_id: dictionaries.travelRegions[0]?.id || "",
           program_id:
-            programList.find((p) => p.risk_type === "TRAVEL_MEDICAL_EXPENSES")
+            dictionaries.programs.find((p) => p.risk_type === "TRAVEL_MEDICAL_EXPENSES")
               ?.id || "",
         },
       }));
     } catch (error) {
-      dispatch(insuranceDictionariesError(getNskErrorMessage(error)));
+      dispatch(insuranceDictionariesError(getApiErrorMessage(error)));
     }
   }
 
@@ -193,10 +216,36 @@ const Insurance = ({ Alert }) => {
   }
 
   function updateCar(field, value) {
-    setForm((prev) => ({
-      ...prev,
-      car: { ...prev.car, [field]: value },
-    }));
+    setForm((prev) => {
+      const nextCar = { ...prev.car, [field]: value };
+
+      if (
+        prev.product === INSURANCE_PRODUCTS.KASKO &&
+        field === "program_id" &&
+        value
+      ) {
+        nextCar.approved_drivers_type = "EXPERIENCE_1_YEAR";
+      }
+
+      return { ...prev, car: nextCar };
+    });
+  }
+
+  function toggleKaskoRisk(risk) {
+    setForm((prev) => {
+      const selected = prev.car.selected_risks.includes(risk)
+        ? prev.car.selected_risks.filter((r) => r !== risk)
+        : [...prev.car.selected_risks, risk];
+      return {
+        ...prev,
+        car: {
+          ...prev.car,
+          selected_risks: selected.length
+            ? selected
+            : ["CAR_PROPERTY_DAMAGE"],
+        },
+      };
+    });
   }
 
   function updateTravel(field, value) {
@@ -357,13 +406,14 @@ const Insurance = ({ Alert }) => {
   }
 
   function canNavigateToStep(targetStep) {
-    if (SKIP_FORM_VALIDATION) return true;
-
-    if (targetStep === WIZARD_STEPS.INSPECTION && step < WIZARD_STEPS.INSPECTION) {
-      return false;
+    if (SKIP_FORM_VALIDATION) {
+      if (targetStep === WIZARD_STEPS.INSPECTION) {
+        return Boolean(createdPolicy?.needs_inspection);
+      }
+      return targetStep <= WIZARD_STEPS.SUMMARY || targetStep === WIZARD_STEPS.INSPECTION;
     }
-    if (targetStep === WIZARD_STEPS.SUCCESS && step < WIZARD_STEPS.SUCCESS) {
-      return false;
+    if (targetStep === WIZARD_STEPS.INSPECTION) {
+      return Boolean(createdPolicy?.needs_inspection);
     }
     return true;
   }
@@ -402,96 +452,160 @@ const Insurance = ({ Alert }) => {
 
   async function handleCalculate() {
     setLoading(true);
+    setApiError("");
     try {
-      const payload = buildContractPayload(form);
-      const result = await calculatePrice(payload);
-      dispatch(insuranceSetPrice(result));
+      const payload = buildHitTravelPayload(form);
+      const result = await calculateInsurancePrice(form.product, payload);
+      dispatch(
+        insuranceSetPrice({
+          net_premium: result.net_premium,
+          sales_tax: result.sales_tax,
+          gross_premium: result.total ?? result.gross_premium,
+        })
+      );
       Alert("Стоимость рассчитана", "success");
     } catch (error) {
-      Alert(getNskErrorMessage(error), "error");
+      const message = getApiErrorMessage(error);
+      setApiError(message);
+      Alert(message, "error");
     } finally {
       setLoading(false);
     }
   }
 
-  async function handleCreateAndActivate() {
-    setLoading(true);
-    try {
-      const payload = buildContractPayload(form);
-      const created = await createContract(payload);
-      dispatch(insuranceSetContract(created));
-      dispatch(insuranceSetPrice(created));
+  async function handleCreateAndPay() {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      Alert("Для оформления полиса необходимо войти в аккаунт", "error");
+      navigate("/login");
+      return;
+    }
 
-      if (kaskoRequiresInspection(form)) {
+    setLoading(true);
+    setApiError("");
+    try {
+      const payload = buildHitTravelPayload(form);
+
+      if (!price) {
+        const calculated = await calculateInsurancePrice(form.product, payload);
+        dispatch(
+          insuranceSetPrice({
+            net_premium: calculated.net_premium,
+            sales_tax: calculated.sales_tax,
+            gross_premium: calculated.total ?? calculated.gross_premium,
+          })
+        );
+      }
+
+      const created = await createInsurancePolicy(form.product, payload);
+
+      if (!created?.policy_id) {
+        throw new Error("Не получен policy_id после создания полиса");
+      }
+
+      setCreatedPolicy(created);
+
+      if (form.product === INSURANCE_PRODUCTS.KASKO && created.needs_inspection) {
+        Alert(
+          "Полис создан. Загрузите фото автомобиля для осмотра (Standard).",
+          "info"
+        );
         setStep(WIZARD_STEPS.INSPECTION);
-        Alert("Договор создан. Загрузите фото осмотра для активации", "success");
-        setLoading(false);
         return;
       }
 
-      const activated = await activateContract(created.id);
-      dispatch(insuranceSetContract(activated));
-      const doc = await fetchDocumentWithRetry(created.id);
-      dispatch(insuranceSetDocument(doc));
-      setStep(WIZARD_STEPS.SUCCESS);
-      Alert("Полис успешно активирован", "success");
+      if (!created?.transaction_id) {
+        throw new Error("Не получен transaction_id для оплаты");
+      }
+
+      Alert("Полис создан. Переход к оплате", "success");
+      goToFinikPayment(dispatch, navigate, created, form.product);
     } catch (error) {
-      Alert(getNskErrorMessage(error), "error");
+      const message = getApiErrorMessage(error);
+      setApiError(message);
+      Alert(message, "error");
     } finally {
       setLoading(false);
     }
   }
 
   async function handleInspectionSubmit() {
-    if (!SKIP_FORM_VALIDATION) {
-      const missing = INSPECTION_PHOTO_FIELDS.filter(
-        ({ key }) => !form.inspection.photos[key]
+    const policyId = createdPolicy?.policy_id || contract?.policy_id;
+    if (!policyId) {
+      Alert("Сначала создайте полис на шаге «Расчёт и оплата»", "error");
+      return;
+    }
+
+    const missingPhoto = INSPECTION_PHOTO_FIELDS.some(
+      ({ key }) => !form.inspection.photos[key]
+    );
+    if (!SKIP_FORM_VALIDATION && missingPhoto) {
+      Alert("Загрузите все 10 обязательных фотографий", "error");
+      return;
+    }
+
+    setLoading(true);
+    setApiError("");
+    try {
+      const result = await submitKaskoInspection(
+        policyId,
+        form.inspection.photos,
+        form.inspection.damageImages
       );
-      if (missing.length) {
-        Alert(`Загрузите фото: ${missing.map((m) => m.label).join(", ")}`, "error");
-        return;
-      }
-    }
-
-    setLoading(true);
-    try {
-      const data = new FormData();
-      data.append("inspectionDate", String(form.inspection.inspectionDate));
-      if (form.inspection.comment) {
-        data.append("comment", form.inspection.comment);
-      }
-      INSPECTION_PHOTO_FIELDS.forEach(({ key }) => {
-        data.append(key, form.inspection.photos[key]);
-      });
-      form.inspection.damageImages.forEach((file) => {
-        data.append("damageImages", file);
-      });
-
-      const approval = await uploadInspection(contract.id, data);
-      setInspectionStatus(approval.status);
-      Alert("Осмотр отправлен на согласование", "success");
+      setInspectionSubmitted(true);
+      setInspectionStatus(result?.status || "IN_PROGRESS");
+      Alert(
+        result?.message ||
+          "Осмотр отправлен на согласование. Ожидайте подтверждения.",
+        "success"
+      );
     } catch (error) {
-      Alert(getNskErrorMessage(error), "error");
+      const message = getApiErrorMessage(error);
+      setApiError(message);
+      Alert(message, "error");
     } finally {
       setLoading(false);
     }
   }
 
-  async function handleActivateAfterInspection() {
-    setLoading(true);
-    try {
-      const activated = await activateContract(contract.id);
-      dispatch(insuranceSetContract(activated));
-      const doc = await fetchDocumentWithRetry(contract.id);
-      dispatch(insuranceSetDocument(doc));
-      setStep(WIZARD_STEPS.SUCCESS);
-      Alert("Полис активирован", "success");
-    } catch (error) {
-      Alert(getNskErrorMessage(error), "error");
-    } finally {
-      setLoading(false);
+  async function handleProceedToPayment() {
+    const policy = createdPolicy || contract;
+    if (!policy?.transaction_id) {
+      Alert("Транзакция для оплаты не найдена", "error");
+      return;
     }
+    goToFinikPayment(dispatch, navigate, policy, form.product);
   }
+
+  useEffect(() => {
+    const policyId = createdPolicy?.policy_id || contract?.policy_id;
+    if (
+      step !== WIZARD_STEPS.INSPECTION ||
+      !policyId ||
+      !inspectionSubmitted
+    ) {
+      return undefined;
+    }
+
+    let cancelled = false;
+
+    const pollStatus = async () => {
+      try {
+        const status = await getPolicyStatus(policyId);
+        if (cancelled) return;
+        setInspectionStatus(status?.inspection_status || status?.status);
+      } catch {
+        // polling errors are non-fatal
+      }
+    };
+
+    pollStatus();
+    const intervalId = setInterval(pollStatus, 5000);
+    return () => {
+      cancelled = true;
+      clearInterval(intervalId);
+    };
+  }, [step, createdPolicy, contract, inspectionSubmitted]);
 
   function renderPolicyholderStep() {
     const ph = form.policyholder;
@@ -577,19 +691,30 @@ const Insurance = ({ Alert }) => {
             <>
               <Field label="Программа КАСКО">
                 <select className="input_form" value={car.program_id} onChange={(e) => updateCar("program_id", e.target.value)}>
-                  <option value="">Standard (без программы)</option>
-                  {programs
-                    .filter((p) => p.risk_type === "CAR_PROPERTY_DAMAGE")
-                    .map((item) => (
-                      <option key={item.id} value={item.id}>{item.name}</option>
-                    ))}
+                  <option value="">Standard (требуется осмотр)</option>
+                  {programs.map((item) => (
+                    <option key={item.id} value={item.id}>
+                      {item.name} — {item.insured_sum} {item.currency}
+                    </option>
+                  ))}
                 </select>
               </Field>
+              {car.program_id && (
+                <p className="insurance_hint">
+                  Программы Эконом/Эконом+ — осмотр не нужен, допуск водителей: стаж от 1 года.
+                </p>
+              )}
               {!car.program_id && (
                 <Field label="Страховая сумма" required>
                   <input type="number" className="input_form" value={car.insurance_amount} onChange={(e) => updateCar("insurance_amount", e.target.value)} />
                 </Field>
               )}
+              <Field label="С прицепом">
+                <select className="input_form" value={car.use_with_trailer ? "yes" : "no"} onChange={(e) => updateCar("use_with_trailer", e.target.value === "yes")}>
+                  <option value="no">Нет</option>
+                  <option value="yes">Да</option>
+                </select>
+              </Field>
             </>
           )}
           <Field label="Марка" required>
@@ -604,6 +729,16 @@ const Insurance = ({ Alert }) => {
           <Field label="VIN" required>
             <input className="input_form" value={car.vin} onChange={(e) => updateCar("vin", e.target.value)} />
           </Field>
+          <Field label="Тип двигателя" required>
+            <select className="input_form" value={car.engine_type} onChange={(e) => updateCar("engine_type", e.target.value)}>
+              <option value="ICE">Бензин/дизель</option>
+              <option value="ELECTRIC">Электро</option>
+              <option value="HYBRID">Гибрид</option>
+            </select>
+          </Field>
+          <Field label="Объём/мощность двигателя" required>
+            <input type="number" className="input_form" value={car.engine_capacity_power} onChange={(e) => updateCar("engine_capacity_power", e.target.value)} />
+          </Field>
           <Field label="Гос. номер" required>
             <input className="input_form" value={car.registration_number} onChange={(e) => updateCar("registration_number", e.target.value)} />
           </Field>
@@ -617,6 +752,23 @@ const Insurance = ({ Alert }) => {
             <input type="number" min="1" max="366" className="input_form" value={form.duration} onChange={(e) => setForm((prev) => ({ ...prev, duration: e.target.value }))} />
           </Field>
         </div>
+
+        {form.product === INSURANCE_PRODUCTS.KASKO && (
+          <div className="insurance_risks">
+            <h4>Риски КАСКО</h4>
+            {KASKO_RISKS.map((risk) => (
+              <label key={risk.value} className="insurance_risk_item">
+                <input
+                  type="checkbox"
+                  checked={car.selected_risks.includes(risk.value)}
+                  onChange={() => toggleKaskoRisk(risk.value)}
+                  disabled={risk.value === "CAR_PROPERTY_DAMAGE"}
+                />
+                <span>{risk.label}</span>
+              </label>
+            ))}
+          </div>
+        )}
 
         {car.approved_drivers_type === "APPROVED" && (
           <div className="insurance_subsection">
@@ -793,7 +945,7 @@ const Insurance = ({ Alert }) => {
 
     return (
       <div className="insurance_step_card">
-        <h3>Расчёт и оформление</h3>
+        <h3>Расчёт и оплата</h3>
         <div className="insurance_summary_box">
           <p><strong>Продукт:</strong> {PRODUCT_LABELS[form.product]}</p>
           <p><strong>Страхователь:</strong> {form.policyholder.last_name} {form.policyholder.first_name}</p>
@@ -816,12 +968,19 @@ const Insurance = ({ Alert }) => {
             </div>
           )}
         </div>
+        {apiError && (
+          <div className="insurance_form_error" role="alert">
+            {apiError}
+          </div>
+        )}
         <div className="insurance_actions_row">
           <button type="button" className="button_form insurance_btn_secondary" onClick={handleCalculate} disabled={loading}>
             Рассчитать стоимость
           </button>
-          <button type="button" className="button_form" onClick={handleCreateAndActivate} disabled={loading || !price}>
-            Создать и активировать
+          <button type="button" className="button_form" onClick={handleCreateAndPay} disabled={loading}>
+            {form.product === INSURANCE_PRODUCTS.KASKO && kaskoNeedsInspection
+              ? "Оформить и перейти к осмотру"
+              : "Оформить и перейти к оплате"}
           </button>
         </div>
       </div>
@@ -829,14 +988,24 @@ const Insurance = ({ Alert }) => {
   }
 
   function renderInspectionStep() {
+    const inspectionApproved = inspectionStatus === "APPROVED";
+    const inspectionRejected = inspectionStatus === "REJECTED";
+
     return (
       <div className="insurance_step_card">
-        <h3>Осмотр автомобиля (КАСКО)</h3>
+        <h3>Осмотр автомобиля (КАСКО Standard)</h3>
         <p className="insurance_hint">
-          Загрузите 10 обязательных фотографий. После согласования нажмите «Активировать полис».
+          Загрузите 10 обязательных фотографий. После согласования НСК можно перейти к оплате через Finik.
         </p>
         {inspectionStatus && (
-          <div className="insurance_status_badge">Статус осмотра: {inspectionStatus}</div>
+          <div className="insurance_status_badge">
+            Статус осмотра: {inspectionStatus}
+          </div>
+        )}
+        {inspectionRejected && (
+          <div className="insurance_form_error" role="alert">
+            Осмотр отклонён. Загрузите фото повторно или обратитесь в поддержку.
+          </div>
         )}
         <div className="insurance_photo_grid">
           {INSPECTION_PHOTO_FIELDS.map(({ key, label }) => (
@@ -860,48 +1029,29 @@ const Insurance = ({ Alert }) => {
             </label>
           ))}
         </div>
-        <Field label="Комментарий">
-          <textarea
-            className="input_form insurance_textarea"
-            value={form.inspection.comment}
-            onChange={(e) =>
-              setForm((prev) => ({
-                ...prev,
-                inspection: { ...prev.inspection, comment: e.target.value },
-              }))
-            }
-          />
-        </Field>
+        {apiError && (
+          <div className="insurance_form_error" role="alert">
+            {apiError}
+          </div>
+        )}
         <div className="insurance_actions_row">
-          <button type="button" className="button_form insurance_btn_secondary" onClick={handleInspectionSubmit} disabled={loading}>
+          <button
+            type="button"
+            className="button_form insurance_btn_secondary"
+            onClick={handleInspectionSubmit}
+            disabled={loading || inspectionApproved}
+          >
             Отправить осмотр
           </button>
-          <button type="button" className="button_form" onClick={handleActivateAfterInspection} disabled={loading}>
-            Активировать полис
+          <button
+            type="button"
+            className="button_form"
+            onClick={handleProceedToPayment}
+            disabled={loading || !inspectionApproved}
+          >
+            Перейти к оплате
           </button>
         </div>
-      </div>
-    );
-  }
-
-  function renderSuccessStep() {
-    return (
-      <div className="insurance_step_card insurance_success">
-        <FaCheck size={48} color="var(--blue)" />
-        <h3>Полис оформлен</h3>
-        {contract?.number && <p>Номер полиса: <strong>{contract.number}</strong></p>}
-        {contract?.gross_premium && (
-          <p>Сумма: <strong>{Number(contract.gross_premium).toFixed(2)} сом</strong></p>
-        )}
-        {document?.url && (
-          <a href={document.url} target="_blank" rel="noreferrer" className="button_form insurance_download_btn">
-            <FaDownload size={18} />
-            Скачать PDF
-          </a>
-        )}
-        <button type="button" className="insurance_link_btn" onClick={() => navigate("/")}>
-          На главную
-        </button>
       </div>
     );
   }
@@ -918,20 +1068,15 @@ const Insurance = ({ Alert }) => {
         return renderSummaryStep();
       case WIZARD_STEPS.INSPECTION:
         return renderInspectionStep();
-      case WIZARD_STEPS.SUCCESS:
-        return renderSuccessStep();
       default:
         return null;
     }
   }
 
-  const showNav = SKIP_FORM_VALIDATION
-    ? step < WIZARD_STEPS.SUCCESS
-    : step < WIZARD_STEPS.SUCCESS && step !== WIZARD_STEPS.INSPECTION;
-
-  const showNextButton = SKIP_FORM_VALIDATION
-    ? step < WIZARD_STEPS.SUCCESS
-    : step < WIZARD_STEPS.SUMMARY;
+  const showNav =
+    step < WIZARD_STEPS.SUMMARY ||
+    (step === WIZARD_STEPS.SUMMARY && !createdPolicy?.needs_inspection);
+  const showNextButton = step < WIZARD_STEPS.SUMMARY;
 
   function goToNextStep() {
     if (!validateStep(step)) return;
@@ -943,14 +1088,6 @@ const Insurance = ({ Alert }) => {
     }
     if (step === WIZARD_STEPS.INSURED) {
       setStep(WIZARD_STEPS.SUMMARY);
-      return;
-    }
-    if (SKIP_FORM_VALIDATION && step === WIZARD_STEPS.SUMMARY) {
-      setStep(WIZARD_STEPS.INSPECTION);
-      return;
-    }
-    if (SKIP_FORM_VALIDATION && step === WIZARD_STEPS.INSPECTION) {
-      setStep(WIZARD_STEPS.SUCCESS);
     }
   }
 
@@ -962,7 +1099,7 @@ const Insurance = ({ Alert }) => {
         {loading && <Loader />}
 
         <div className="insurance_steps">
-          {STEP_LABELS.map((label, index) => {
+          {stepLabels.map((label, index) => {
             const isNavigable = canNavigateToStep(index) && index !== step;
             return (
               <button

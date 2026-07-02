@@ -27,12 +27,11 @@ import DetailMyTour from "../DetailMyTour/DetailMyTour";
 import DecorHotel from "../DecorHotel/DecorHotel";
 import AirTickets from "../AirTickets/AirTickets";
 import DateilAir from "../DateilAir/DateilAir";
-import PaymentMbank from "../PaymentMbank/PaymentMbank";
-import PaymentCode from "../PaymentCode/PaymentCode";
 import TicketRequest from "../TicketRequest/TicketRequest";
 import DetailMyHotel from "../DetailMyHotel/DetailMyHotel";
 import PackegeTour from "../PackageTour/PackageTour";
 import Insurance from "../Insurance/Insurance";
+import PaymentSuccess from "../PaymentSuccess/PaymentSuccess";
 
 const bishkek = {
   id: 80,
@@ -559,14 +558,6 @@ const AppSite = ({ local, Alert }) => {
           path="ticket-request/:cancel"
           element={<PrivateRoute element={<TicketRequest Alert={Alert} />} />}
         />
-        <Route
-          path="payment-mbank/:info"
-          element={<PrivateRoute element={<PaymentMbank Alert={Alert} />} />}
-        />
-        <Route
-          path="payment-code/:param"
-          element={<PrivateRoute element={<PaymentCode Alert={Alert} />} />}
-        />
         <Route path="air-tickets/:get" element={<AirTickets Alert={Alert} />} />
         <Route path="detail-air/:id" element={<DateilAir Alert={Alert} />} />
         <Route
@@ -806,7 +797,8 @@ const AppSite = ({ local, Alert }) => {
           }
         />
         <Route path="payment" element={<Payment Alert={Alert} />} />
-        <Route path="payment/:m" element={<Payment />} />
+        <Route path="payment/success" element={<PaymentSuccess />} />
+        <Route path="payment/:m" element={<Payment Alert={Alert} />} />
         <Route
           path="hotels/:country"
           element={

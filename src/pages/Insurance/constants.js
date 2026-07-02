@@ -42,12 +42,22 @@ export const INSPECTION_PHOTO_FIELDS = [
   { key: "vinCodeView", label: "VIN-код" },
 ];
 
+export const KASKO_RISKS = [
+  { value: "CAR_PROPERTY_DAMAGE", label: "Ущерб имуществу" },
+  { value: "CAR_VOLUNTARY_CIVIL_LIABILITY", label: "Добровольная гражданская ответственность" },
+  { value: "CAR_SEATS_PERSONAL_ACCIDENT", label: "Несчастный случай на местах" },
+];
+
 export const WIZARD_STEPS = {
   POLICYHOLDER: 0,
   INSURED: 1,
   SUMMARY: 2,
   INSPECTION: 3,
-  SUCCESS: 4,
+};
+
+export const STEP_LABELS_BY_PRODUCT = {
+  DEFAULT: ["Страхователь", "Объект страхования", "Расчёт и оплата"],
+  KASKO_WITH_INSPECTION: ["Страхователь", "Объект страхования", "Расчёт и оплата", "Осмотр"],
 };
 
 export function createInitialForm(product = INSURANCE_PRODUCTS.OSAGO) {
@@ -96,6 +106,7 @@ export function createInitialForm(product = INSURANCE_PRODUCTS.OSAGO) {
       certificate_number: "",
       certificate_issuing_date: "",
       owner_same_as_policyholder: true,
+      selected_risks: ["CAR_PROPERTY_DAMAGE"],
       approved_drivers: [],
     },
     travel: {

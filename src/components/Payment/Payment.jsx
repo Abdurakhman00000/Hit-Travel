@@ -2,54 +2,51 @@ import React, { useEffect, useState } from "react";
 import "../../pages/Decor/Decor.css";
 import "./Payment.css";
 import Header from "../Header/Header";
-import axios from "axios";
-import { url } from "../../Api";
-import { useSelector } from "react-redux";
-import { IoIosInformationCircle } from "react-icons/io";
 import Loader from "../UI/Loader/Loader";
+import { useSelector } from "react-redux";
+import { useNavigate, useSearchParams } from "react-router-dom";
+import { IoIosInformationCircle } from "react-icons/io";
+import { createFinikPayment } from "../../api/finikPayment";
+import { getApiErrorMessage } from "../../api/http";
+import finikLogo from "../../img/hit-logo.png";
+
+const FINIK_PRODUCTS = new Set(["air", "insurance"]);
 
 const Payment = ({ Alert }) => {
   const { deep } = useSelector((state) => state.deep);
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
-  const [link, setLink] = useState();
+  const [paymentData, setPaymentData] = useState(null);
+  const [error, setError] = useState("");
 
-  const visa = async () => {
-    if (deep?.datasis?.transaction_id) {
-      const token = localStorage.getItem("token");
+  const transactionId = deep?.datasis?.transaction_id;
+  const isFinikPayment =
+    deep?.paymentType === "finik" || FINIK_PRODUCTS.has(deep?.productType);
+
+  useEffect(() => {
+    if (!transactionId || !isFinikPayment) {
+      setLoading(false);
+      return;
+    }
+
+    const initPayment = async () => {
       try {
-        const response = await axios.post(
-          `${url}/payler/pay/`,
-          {
-            order_id: deep.datasis.transaction_id,
-          },
-          {
-            headers: {
-              Authorization: `Token ${token}`,
-            },
-          }
-        );
-        if (response?.data?.url) {
-          setLink(response.data.url);
-        } else if (response?.data?.response === false) {
-          setLink(deep.datasis.payler_url || "");
-        } else {
-          Alert("Ссылка для оплаты не найдена", "error");
-        }
-      } catch (error) {
-        console.error("Payment Error:", error);
-        Alert("Произошла ошибка при загрузке данных", "error");
+        const redirectPath = deep?.policyId
+          ? `/payment/success?type=insurance&policy_id=${deep.policyId}`
+          : "/payment/success?type=air";
+        const data = await createFinikPayment(transactionId, redirectPath);
+        setPaymentData(data);
+      } catch (err) {
+        const message = getApiErrorMessage(err);
+        setError(message);
+        Alert(message, "error");
       } finally {
         setLoading(false);
       }
-    } else {
-      Alert("Сейчас недоступно", "info");
-      setLoading(false);
-    }
-  };
+    };
 
-  useEffect(() => {
-    visa();
-  }, [deep?.datasis?.transaction_id]);
+    initPayment();
+  }, [transactionId, isFinikPayment]);
 
   if (loading) {
     return (
@@ -59,66 +56,45 @@ const Payment = ({ Alert }) => {
     );
   }
 
-  // const handleLinkClick = (e) => {
-  //   console.log("Payment Link:", link);
-  //   if (link && link.startsWith("http")) {
-  //     window.open(link, "_self");
-  //   } else {
-  //     e.preventDefault();
-  //     Alert("Ссылка для оплаты недоступна", "error");
-  //   }
-  // };
+  if (!transactionId || !isFinikPayment) {
+    return (
+      <div className="decor pay">
+        <Header>
+          <h1>Онлайн оплата</h1>
+        </Header>
+        <div className="container">
+          <div className="pay_unavailable">
+            <IoIosInformationCircle color="var(--blue)" size={32} />
+            <p>
+              Онлайн-оплата через Finik доступна для авиабилетов, ОСАГО, КАСКО и ВЗР.
+            </p>
+            <button type="button" className="button_form" onClick={() => navigate("/")}>
+              На главную
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const amount = paymentData?.amount ?? deep?.amount;
+  const paymentUrl = paymentData?.payment_url;
 
   return (
     <div className="decor pay">
       <Header>
-        <h1>Онлайн оплата</h1>
+        <h1>Оплата Finik Pay</h1>
       </Header>
       <div className="container">
         <div className="summa">
-          {/* {deep?.data?.price && (
-            <>
-              <div className="between">
-                <p className="gray">Сумма</p>
-                <p className="text">
-                  {deep?.data?.price && deep?.data?.price.toFixed(2)}{" "}
-                  {deep?.data.currency === 1
-                    ? "EUR"
-                    : deep?.data.currency === 2
-                    ? "USD"
-                    : deep?.data.currency === "KGS"
-                    ? deep?.data.currency
-                    : "KGS"}
-                </p>
-              </div>
-              <div className="hr"></div>
-            </>
-          )}
-          {deep?.data?.paid && (
-            <>
-              <div className="between">
-                <p className="gray">Оплачено</p>
-                <p className="text">
-                  {deep?.data.paid}{" "}
-                  {deep?.data.currency === 1
-                    ? "EUR"
-                    : deep.data.currency === 2
-                    ? "USD"
-                    : deep?.data.currency === "KGS"
-                    ? deep?.data.currency
-                    : "KGS"}{" "}
-                </p>
-              </div>
-              <div className="hr"></div>
-            </>
-          )} */}
           <div className="between">
             <p className="gray">К оплате</p>
             <p className="text">
-              {deep?.amount.toFixed(2)} {deep?.currency}
+              {Number(amount || 0).toFixed(2)} {deep?.currency || "KGS"}
             </p>
           </div>
         </div>
+
         {deep?.status === "Бронирован" && (
           <div className="info">
             <IoIosInformationCircle color="#ff0000" size={30} />
@@ -130,74 +106,30 @@ const Payment = ({ Alert }) => {
             </div>
           </div>
         )}
-        <h2>Оплата через:</h2>
-        {deep?.deeplink ? (
-          <a
-            style={{
-              position: "relative",
-              top: 12,
-              left: 0,
-              right: 0,
-              bottom: 0,
-            }}
-            href={deep?.deeplink}
-            target="blank"
-          >
-            <div className="oplata_div">
-              <img
-                style={{
-                  width: 30,
-                  height: 30,
-                }}
-                src="https://play-lh.googleusercontent.com/xf5_bSz5pNxQHd2K9yig3wM8LAaDigaLhMWdjsVKwSPW0CoyFXoJNUr7Iix1hzTgyg0"
-                alt=""
-              />
-              MBANK
+
+        <div className="finik_pay_info">
+          <p>После успешной оплаты заказ будет обработан автоматически.</p>
+        </div>
+
+        {error && <div className="payment_error">{error}</div>}
+
+        {paymentUrl ? (
+          <a href={paymentUrl} target="_blank" rel="noreferrer" className="finik_pay_link">
+            <div className="oplata_div finik_pay_card">
+              <img src={finikLogo} alt="Finik Pay" className="finik_pay_logo" />
+              <div>
+                <strong>Оплатить через Finik Pay</strong>
+                <span>QR / банковское приложение</span>
+              </div>
             </div>
           </a>
         ) : (
-          <p>Оплата через MBANK недоступна</p>
+          !error && (
+            <button type="button" className="button_form" disabled>
+              Ссылка на оплату загружается...
+            </button>
+          )
         )}
-        {link && (
-          <a
-            href={link || "#"}
-            target="_blank"
-            // onClick={handleLinkClick}
-            style={{
-              position: "relative",
-              top: 12,
-              left: 0,
-              right: 0,
-              bottom: 0,
-            }}
-            rel="noreferrer"
-          >
-            <div className="oplata_div">
-              <img
-                style={{
-                  width: 30,
-                  height: 30,
-                }}
-                src="https://cdn-icons-png.flaticon.com/512/6963/6963703.png"
-                alt="Оплата картой"
-              />
-              Оплата картой
-            </div>
-          </a>
-        )}
-        {/* )} */}
-        {/* <div
-          onClick={() => navigate("/dashboard/history")}
-          style={{
-            marginTop: 22,
-            background: "#fff",
-            color: "#888",
-            boxShadow: "none",
-          }}
-          className="button_form"
-        >
-          Оплатить позже
-        </div> */}
       </div>
     </div>
   );

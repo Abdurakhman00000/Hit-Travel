@@ -200,25 +200,30 @@ const DateilAir = ({ Alert }) => {
               requestData.is_health_declaration_checked
             }${passengersParams && `&${passengersParams}`}&count=${count.length}`
             try {
-              const response = await axios.get(url_book, {
-                headers: { Authorization: `Token ${token}` },
-              })
+              const response = await axios.post(
+                `${url}/flights/booking`,
+                requestData,
+                { headers: { Authorization: `Bearer ${token}` } }
+              )
               setLoader(false)
               if (response.data.message) {
                 Alert(response.data.message, 'error')
               }
-              if (response.data.response === true && response.data?.deeplink) {
+              if (response.data.response === true && response.data?.transaction_id) {
                 const datasing = {
                   amount: response.data?.amount,
                   currency: 'KGS',
                   status: null,
                   timeout: null,
-                  datasis: response.data,
-                  deeplink: response.data?.deeplink,
+                  datasis: {
+                    transaction_id: response.data.transaction_id,
+                  },
+                  paymentType: 'finik',
+                  productType: 'air',
                 }
                 Alert('Успешно', 'success')
                 dispatch(deepAction(datasing))
-                navigate('/payment/')
+                navigate('/payment')
               }
             } catch (error) {
               console.error('Booking error:', error)
