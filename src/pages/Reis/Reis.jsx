@@ -495,10 +495,10 @@ const Reis = () => {
                     )} */}
                     {dataTourDetail.length > 0 &&
                     dataTourDetail[0].tours.tour.length > 0 ? (
-                      dataTourDetail[0].tours.tour.map((el) => (
+                      dataTourDetail[0].tours.tour.map((el, idx) => (
                         <div
                           onClick={() => navigate(`/details-tour/${el.tourid}`)}
-                          key={el.tourid}
+                          key={el.tourid || idx}
                           className="tour_box"
                         >
                           <div className="contant_two">
