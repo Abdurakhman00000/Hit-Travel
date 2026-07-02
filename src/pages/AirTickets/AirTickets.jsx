@@ -101,7 +101,10 @@ const AirTickets = ({ Alert, handleResortClick, openedResorts }) => {
   const fetchTickets = useCallback(() => {
     if (get) {
       const formattedDate = dateNightFrom;
-      const getten = `${get}&segments[0][date]=${formatDate(formattedDate)}${
+      const dateSegment = get.includes("segments[0][date]")
+        ? ""
+        : `&segments[0][date]=${formatDate(formattedDate)}`;
+      const getten = `${get}${dateSegment}${
         filter.is_direct_only ? "&is_direct_only=1" : ""
       }${filter.is_refund ? "&is_refund=true" : ""}${
         filter.is_baggage ? "&is_baggage=true" : ""

@@ -1,6 +1,6 @@
 import axios from "axios";
 import { url } from "../Api";
-import { getBearerHeaders, getApiErrorMessage } from "./http";
+import { getTokenHeaders as getBearerHeaders, getApiErrorMessage } from "./http";
 
 export { getApiErrorMessage };
 
