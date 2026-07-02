@@ -36,8 +36,7 @@ import {
 import { buildHitTravelPayload } from "./buildHitTravelPayload";
 import { addDaysToDateStr, todayDateStr } from "../../utils/epochDate";
 
-// TODO: вернуть true после тестирования
-const SKIP_FORM_VALIDATION = true;
+const SKIP_FORM_VALIDATION = false;
 
 function goToFinikPayment(dispatch, navigate, created, formProduct) {
   dispatch(insuranceSetContract(created));
