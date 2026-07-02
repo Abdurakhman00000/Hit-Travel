@@ -6,7 +6,7 @@ export const searchAction = (getten) => async (dispatch) => {
     const response = await axios.get(url + "/api/search?" + getten);
     dispatch({
       type: "SEARCH_API",
-      payload: response.data.data,
+      payload: response.data,
     });
     dispatch({
       type: "SEARCH_API_LOADING",
