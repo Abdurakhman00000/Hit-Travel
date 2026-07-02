@@ -154,7 +154,7 @@ const DateilAir = ({ Alert }) => {
   }
 
   const requestData = {
-    tid: ticket?.flight?.id,
+    tid: id,
     lang: 'ru',
     client_phone: user.phone,
     payer_name: user.first_name,
