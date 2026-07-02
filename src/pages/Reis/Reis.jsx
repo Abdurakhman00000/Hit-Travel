@@ -116,8 +116,9 @@ const Reis = () => {
           size={25}
         />
       </div>
-      {dataReis.images ? (
+      {dataReis.images || dataTourDetail.length > 0 ? (
         <>
+          {dataReis.images?.image?.length > 0 && (
           <div className="slide">
             <Slider {...settings} className="slide_border">
               {dataReis.images.image.map((el, id) => (
@@ -136,6 +137,7 @@ const Reis = () => {
               ))}
             </Slider>
           </div>
+          )}
           <div className="container">
             {/* <div className="relative">
               <div className="category">
@@ -193,14 +195,14 @@ const Reis = () => {
               <>
                 <div className="head_text">
                   <div className="stars">
-                    {Array.from({ length: dataReis.stars }, (_, starIndex) => (
+                    {Array.from({ length: dataReis.stars || dataTourDetail[0]?.hotelstars || 0 }, (_, starIndex) => (
                       <span key={starIndex}>
                         <FaStar className="icon" size={15} />
                       </span>
                     ))}
                   </div>
-                  <h1>{dataReis.name}</h1>
-                  <p>{dataReis.placement}</p>
+                  <h1>{dataReis.name || dataTourDetail[0]?.hotelname || ""}</h1>
+                  <p>{dataReis.placement || dataTourDetail[0]?.subregionname || ""}</p>
                 </div>
                 <div className="head_body_block">
                   <div className="geo">

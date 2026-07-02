@@ -14,10 +14,13 @@ export const searchAction = (getten) => async (dispatch) => {
     });
   } catch (error) {
     dispatch({
+      type: "SEARCH_API",
+      payload: { result: { hotel: [] }, status: { hotelsfound: 0 }, toursfound: 0 },
+    });
+    dispatch({
       type: "SEARCH_API_LOADING",
       payload: true,
     });
-    console.log(error);
   }
 };
 

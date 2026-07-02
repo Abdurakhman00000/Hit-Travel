@@ -527,7 +527,9 @@ const MainNav = ({
     const savedSearchParams = JSON.parse(localStorage.getItem("searchParams_v2"));
 
     if (savedSearchParams) {
-      setDepor(savedSearchParams.depor || {});
+      const savedDepor = savedSearchParams.depor || {};
+      const VALID_DEPARTURE_IDS = [912, 2116, 9, 12, 103, 105, 106, 107, 109, 112, 113, 115, 136, 17, 15, 16, 26, 180, 538, 1411, 911, 919, 941];
+      setDepor(savedDepor.id && VALID_DEPARTURE_IDS.includes(Number(savedDepor.id)) ? savedDepor : { id: 912, name: "Бишкек" });
       setCountryData(savedSearchParams.countryData || {});
       setResortModal(savedSearchParams.resortModal || { resort: [] });
       setHotelModal(savedSearchParams.hotelModal || { hotel: [] });

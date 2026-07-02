@@ -477,7 +477,7 @@ const CityAndCountry = ({
                         }}
                         className="body_block"
                       >
-                        <img className="img" src={el.picturelink} alt="" />
+                        <img className="img" src={el.picturelink || hotelImage} alt="" />
                         <div className="content_home">
                           <div className="content">
                             <div className="conntent_block_one">

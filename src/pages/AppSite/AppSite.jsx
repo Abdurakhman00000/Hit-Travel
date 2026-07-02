@@ -133,7 +133,7 @@ const AppSite = ({ local, Alert }) => {
   useEffect(() => {
     if (depor) {
       axios
-        .get(url + `/api/country/${depor.id} `)
+        .get(url + `/api/country/${depor.id}`)
         .then((response) => {
           setCountry(response.data.lists.countries.country);
         })
