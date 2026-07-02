@@ -212,7 +212,7 @@ const AppSite = ({ local, Alert }) => {
 
   function apiRegionsRequest(api) {
     axios
-      .get(url + `/api/regions/${api} `)
+      .get(url + `/api/regions/${api}`)
       .then((response) => {
         setRegions(response.data.lists);
       })
