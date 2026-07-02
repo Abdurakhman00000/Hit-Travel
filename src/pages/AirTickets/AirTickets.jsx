@@ -18,25 +18,23 @@ import { Slider } from "antd";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 
 const formatDateTab = (dateString) => {
+  if (!dateString) return "";
+  // Handle DD.MM.YYYY format
+  if (/^\d{2}\.\d{2}\.\d{4}$/.test(dateString)) {
+    const [day, month, year] = dateString.split(".");
+    return `${year}-${month}-${day}`;
+  }
   const months = {
-    янв: "01",
-    фев: "02",
-    мар: "03",
-    апр: "04",
-    май: "05",
-    июн: "06",
-    июл: "07",
-    авг: "08",
-    сен: "09",
-    окт: "10",
-    ноя: "11",
-    дек: "12",
+    янв: "01", фев: "02", мар: "03", апр: "04", май: "05", июн: "06",
+    июл: "07", авг: "08", сен: "09", окт: "10", ноя: "11", дек: "12",
   };
-  const [day, month] = dateString.replace(",", "").split(" ");
-  const monthNumber = months[month.toLowerCase()];
+  const parts = dateString.replace(",", "").split(" ");
+  if (parts.length < 2) return dateString;
+  const [day, month] = parts;
+  const monthNumber = months[month?.toLowerCase()];
+  if (!monthNumber) return dateString;
   const currentYear = new Date().getFullYear();
-  const formattedDate = `${currentYear}-${monthNumber}-${day.padStart(2, "0")}`;
-  return formattedDate;
+  return `${currentYear}-${monthNumber}-${day.padStart(2, "0")}`;
 };
 
 const AirTickets = ({ Alert, handleResortClick, openedResorts }) => {

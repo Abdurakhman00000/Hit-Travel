@@ -116,7 +116,7 @@ const AppSite = ({ local, Alert }) => {
   const [depor, setDepor] = useState(bishkek);
   const [country, setCountry] = useState([]);
   const [countryData, setCountryData] = useState(turkey);
-  const [selectedStars, setSelectedStars] = useState("1");
+  const [selectedStars, setSelectedStars] = useState("");
   const [selectedMeal, setSelectedMeal] = useState(null);
   const [hotel, setHotel] = useState([]);
   const [regions, setRegions] = useState([]);
