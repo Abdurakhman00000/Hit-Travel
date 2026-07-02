@@ -357,7 +357,7 @@ const CityAndCountry = ({
       axios
         .get(url + '/api/search?' + get)
         .then((response) => {
-          const newDatas = response.data?.data?.result?.hotel
+          const newDatas = response.data?.result?.hotel
           if (newDatas) {
             const updatedData = data.concat(newDatas)
             setData(updatedData)
