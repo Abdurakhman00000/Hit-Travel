@@ -332,7 +332,7 @@ const MainNav = ({
         typeHotelModal.typehotel.length > 0
           ? `&&hoteltypes=${typeHotelModal.typehotelread}`
           : "";
-      const hoteldepor = hotel ? `departure=${99}` : deporUrl;
+      const hoteldepor = hotel ? deporUrl : deporUrl;
       const hotelDetail = hotel ? "hotel" : "not";
       const get =
         hoteldepor +
@@ -616,12 +616,17 @@ const MainNav = ({
       {hotDiv.transition && (
         <div className={hotDiv.hot ? "htkz" : " htkz closed"}>
           <div className="compilation">
-            <div class="containers">
+            <div className="containers">
               <div className="tour">
                 <h1>Подборка горящих туров</h1>
                 {loading ? (
                   <div className="loading_div">
                     <Loader />
+                  </div>
+                ) : tourHot.length === 0 ? (
+                  <div style={{ textAlign: "center", padding: "40px 20px", color: "#888" }}>
+                    <p style={{ fontSize: "16px" }}>Горящих туров пока нет</p>
+                    <p style={{ fontSize: "13px", marginTop: "8px" }}>Следите за обновлениями — новые предложения появятся скоро</p>
                   </div>
                 ) : (
                   <div className="map_boxs">
