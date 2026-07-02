@@ -1,0 +1,35 @@
+.chat .if_con {
+  width: 100%;
+  height: calc(100vh - 130px);
+  position: relative;
+}
+
+.chat .if_con iframe {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.mobileContainer_e0d0.__tablet_bacd {
+  width: 100% !important;
+  max-width: 100% !important;
+}
+
+.chat .time_box{
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chat .time {
+  width: 80%;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--black);
+  line-height: 1.1;
+}

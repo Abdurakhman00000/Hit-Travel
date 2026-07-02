@@ -1,0 +1,14 @@
+[33m3c4f1b6[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m HEAD@{0}: reset: moving to 3c4f1b6
+[33m728af92[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{1}: reset: moving to HEAD~2
+[33mc167b60[m HEAD@{2}: reset: moving to c167b60
+[33m30d4c21[m HEAD@{3}: reset: moving to 30d4c21
+[33m30d4c21[m HEAD@{4}: commit: push
+[33mc167b60[m HEAD@{5}: commit: ticket detail
+[33md923a05[m HEAD@{6}: commit: Добавила билд
+[33m728af92[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m HEAD@{7}: commit: Удален билд из .gitignore
+[33mb467ed1[m HEAD@{8}: commit: Обновила .gitignore
+[33m5341e9e[m HEAD@{9}: commit: fixed build
+[33m3c4f1b6[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m HEAD@{10}: commit: search
+[33m98ca25a[m HEAD@{11}: commit: fixed
+[33mc719571[m HEAD@{12}: commit: fixed
+[33ma23c892[m HEAD@{13}: clone: from https://github.com/gulli301185/hit_travel.git

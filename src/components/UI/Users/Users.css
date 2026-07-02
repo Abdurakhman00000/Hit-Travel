@@ -1,0 +1,138 @@
+.user_box_tour {
+  width: 100%;
+  padding: 12px 0;
+  min-height: 55px;
+  border-top: 1px solid var(--gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.user_box_tour .flex {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.user_box_tour .icon {
+  color: var(--blue);
+}
+
+.user_box_tour.r {
+  border-bottom: 1px solid var(--gray);
+}
+
+.user_box_tour h1 {
+  color: var(--unnamed, #081f2c);
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.user_box_tour .btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  gap: 10px;
+}
+
+.user_box_tour .btns h1 {
+  text-align: center !important;
+  margin: 0 !important;
+}
+
+.user_tour .user_box_tour p {
+  color: var(--unnamed, #081f2c);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.user_tour .user_box_tour .blue {
+  color: var(--blue);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.btn {
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  border: 1px solid var(--gray);
+  color: var(--blue);
+  background: transparent;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.chlid {
+  padding: 12px 0;
+  border-top: 1px solid var(--gray);
+  border-bottom: 1px solid var(--gray);
+}
+
+.chlid .between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.chlid .between .mini {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.chlid .map {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chlid .map .circle {
+  padding: 6px 16px;
+  border-radius: 100px;
+  border: 1px solid var(--gray);
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.chlid .map .circle:active {
+  background: var(--gray);
+}
+
+.chlid .map .circle:hover {
+  background: var(--gray);
+}
+
+.child_data {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 15px;
+  border-radius: 10px;
+  padding: 12px 16px;
+  border: 1px solid var(--gray);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.child_data .child {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--black);
+}
+
+.child_price {
+  font-size: 15px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.child_price span {
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
+}

@@ -1,0 +1,60 @@
+.segments {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 0 16px;
+}
+
+.segments h2 {
+  color: #081f2c;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.segments h3 {
+  color: #081f2c;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.segments p {
+  color: #aaa;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.segments .center {
+  text-align: center;
+  font-size: 13px;
+  font-weight: 400;
+  color: #aaa;
+}
+
+.segments .reis_div {
+  display: flex;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.segments .reis_div .fly {
+  width: 60px;
+}
+
+.segments .air {
+  display: flex;
+  align-items: center;
+}
+
+.segments .air img {
+  margin: 0 auto;
+}
+
+.segments .air .image_center {
+  margin: 0 5px;
+}
+
+.segments .left {
+  margin-left: auto;
+  text-align: end;
+}

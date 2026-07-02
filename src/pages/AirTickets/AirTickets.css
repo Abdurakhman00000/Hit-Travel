@@ -1,0 +1,450 @@
+.air_tickets {
+  width: 100%;
+  min-height: 100vh;
+  background: #edf1fa;
+}
+
+.air_tickets .input_box_country {
+  position: relative;
+}
+
+.air_tickets .city_input {
+  margin-top: 10px;
+  width: 100%;
+  height: 45px;
+  outline: none;
+  padding-left: 50px;
+  border: 1px solid var(--gray);
+  border-radius: 10px;
+  font-size: 16px;
+}
+
+.air_tickets .icon_search {
+  position: absolute;
+  left: 15px;
+  top: 20px;
+  font-size: 20px;
+  color: var(--blue);
+}
+
+.air_tickets .list_air {
+  padding-bottom: 200px;
+}
+
+.air_tickets .air_box {
+  position: relative;
+  margin-top: 16px;
+  width: 100%;
+  min-height: 10px;
+  border-radius: 10px;
+  padding: 16px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  background: #fff;
+  box-shadow: 0px 0px 15px rgb(0, 0, 0, 0.08);
+}
+
+.air_tickets .air_box.b {
+  margin-top: 37px;
+  box-sizing: content-box;
+  border: 2px solid var(--gray);
+}
+
+.air_tickets .air_box .cheap {
+  position: absolute;
+  left: 10px;
+  top: -25px;
+  background: var(--gray);
+  display: flex;
+  align-items: center;
+  padding: 0 8px;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  height: 25px;
+}
+
+.air_tickets .air_box .cheap p {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--blue);
+}
+
+.air_tickets .bottom_box_ticket {
+  border-top: 1px solid var(--gray);
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 16px;
+  padding-top: 16px;
+  gap: 10px;
+}
+
+.air_tickets .bottom_box_ticket .price_title {
+  font-size: 15px;
+  font-weight: 400;
+  color: #aaa;
+}
+
+.air_tickets .bottom_box_ticket .price {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.air_tickets .bottom_box_ticket .handle {
+  border: none;
+  border-radius: 5px;
+  height: 45px;
+  font-size: 16px !important;
+  white-space: nowrap;
+  padding: 0 20px;
+  font-size: 20px;
+  font-weight: 600;
+  color: var(--white);
+  background: var(--blue);
+}
+
+.air_tickets .reis_div.r {
+  /* padding: 0 16px;
+  padding-bottom: 6px; */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.air_tickets .reis_div {
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.air_tickets .reis_div .fly {
+  width: 25px !important;
+  height: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.air_tickets .reis_div .fly.gray {
+  background: #cccccc;
+}
+
+.air_tickets .heading .reising {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.air_tickets .heading .reising span {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.air_tickets .heading .times {
+  margin-top: 3px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #888;
+}
+
+.air_tickets .overflowing {
+  margin-top: 8px;
+  width: 100%;
+  display: flex;
+  white-space: nowrap;
+  gap: 5px;
+  overflow-y: hidden;
+}
+
+.air_tickets .dateing {
+  padding: 8px 12px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  background: var(--white);
+}
+
+.air_tickets .dateing p {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--black);
+}
+
+.air_tickets .icon {
+  margin-top: 4px;
+  color: var(--black);
+}
+
+.air_tickets .dateing .blue {
+  color: var(--blue);
+}
+
+.air_tickets .dateing.active {
+  background: var(--blue);
+}
+
+.air_tickets .dateing.active p {
+  font-weight: 500;
+  color: var(--white);
+}
+
+.air_tickets .dateing.active .icon {
+  font-weight: 500;
+  color: var(--white);
+}
+
+.air_tickets .dateing:first-child {
+  margin-left: 3%;
+}
+
+.air_tickets .dateing:last-child {
+  margin-right: 3%;
+}
+
+.air_tickets .filtering_fixet {
+  position: fixed;
+  top: 60px;
+  z-index: 99;
+  width: 100%;
+  background: #edf1fa;
+}
+
+.air_tickets .filtering {
+  padding: 8px 0;
+  display: flex;
+  gap: 5px;
+  overflow-x: auto;
+}
+
+.air_tickets .filter_box {
+  border: 1px solid var(--blue);
+  border-radius: 8px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--blue);
+  background: transparent;
+  white-space: nowrap;
+}
+
+.transparentStyle {
+  width: 100%;
+  padding: 16px;
+  border-radius: 10px;
+  background: transparent;
+  outline: none;
+  border: 1px solid var(--blue);
+  font-size: 16px;
+  color: var(--blue);
+}
+
+.transparentStyle::placeholder {
+  color: var(--blue);
+}
+
+.air_tickets .filter_box.active {
+  background: var(--blue);
+  color: var(--white);
+  font-weight: 500;
+}
+
+.aitportStyle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* gap: 10px; */
+  padding: 30px;
+  width: 100%;
+  border-bottom: ' 1px solid #ddd';
+}
+
+.containerStyle {
+  background: white;
+  height: 100%;
+  width: 80%;
+  /* margin-top: 30px; */
+  border-radius: 20px;
+}
+
+@media (max-width: 768px) {
+  .containerStyle {
+    height: 100%;
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 20px;
+  }
+}
+
+.adaptivaContainer {
+  margin-top: 0px;
+}
+
+@media (max-width: 768px) {
+  .adaptivaContainer {
+    padding-top: 30px;
+  }
+}
+
+.dropStyle {
+  position: absolute;
+  top: 35%;
+  right: 6%;
+  font-size: 18px;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+@media (max-width: 768px) {
+  .dropStyle {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 0;
+    right: 10px;
+    bottom: 0;
+    margin: auto;
+  }
+}
+
+.airline {
+  display: flex;
+  flex-direction: column;
+  width: '100%';
+  padding: 3%;
+}
+
+.airline_list {
+  font-size: 16px;
+  color: var(--blue);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-bottom: ' 1px solid #ddd';
+}
+
+.airline_code {
+  font-family: serif;
+  padding-left: 8px;
+  font-size: 14px;
+}
+
+.timeStyle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 50px;
+}
+
+/* @media (max-width: 768px) {
+  .timeStyle {
+    display: flex; */
+/* flex-direction: column; */
+/* justify-content: space-between; */
+/* align-items: center;
+    justify-items: center; */
+/* margin-bottom: 30px;
+  }
+} */
+.item1 {
+  order: 1;
+}
+
+.item2 {
+  order: 2;
+}
+
+@media (max-width: 768px) {
+  .airline_code {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .airline_list {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 768px) {
+  .aitportStyle {
+    padding: 0px;
+  }
+}
+
+@media (max-width: 768px) {
+  .airline {
+    /* width: 90%; */
+    /* padding: 20px; */
+    margin-right: 0px;
+  }
+}
+
+.air_tickets .baggage {
+  margin: 10px 0;
+  width: 100%;
+  border-radius: 8px;
+  background: #edf1fa;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid var(--gray);
+}
+
+.air_tickets .baggage .text_bag {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.air_tickets .baggage .text_bag span {
+  color: var(--blue);
+  font-weight: 400;
+}
+
+.air_tickets .circle_bag {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  border: 2px solid var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.air_tickets .round_the_bag {
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: var(--blue);
+}
+
+.air_tickets .people {
+  font-size: 13px;
+  font-weight: 400;
+  color: palevioletred;
+}
+
+.bagaj {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.imageIcon {
+  width: 30px;
+  height: 30px;
+  background-color: var(--blue);
+  transform: rotate(90deg);
+  text-align: center;
+  display: flex;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 30px;
+}

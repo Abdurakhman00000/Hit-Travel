@@ -1,0 +1,303 @@
+@font-face {
+  font-family: Gilroy;
+  src: url("../src/fonts/Gilroy-Thin.ttf");
+  font-weight: 100;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url("../src/fonts/Gilroy-UltraLight.ttf");
+  font-weight: 200;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url("../src/fonts/Gilroy-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url("../src/fonts/Gilroy-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url("../src/fonts/Gilroy-Semibold.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url("../src/fonts/Gilroy-Semibold.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url("../src/fonts/Gilroy-Bold.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Gilroy;
+  src: url("../src/fonts/Gilroy-Extrabold.ttf");
+  font-weight: 800;
+}
+
+@font-face {
+  font-family: Rubik;
+  src: url("../src/fonts/Rubik-Light.ttf");
+  font-weight: 300;
+}
+
+@font-face {
+  font-family: Rubik;
+  src: url("../src/fonts/Rubik-Regular.ttf");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: Rubik;
+  src: url("../src/fonts/Rubik-Regular.ttf");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: Rubik;
+  src: url("../src/fonts/Rubik-Regular.ttf");
+  font-weight: 600;
+}
+
+@font-face {
+  font-family: Rubik;
+  src: url("../src/fonts/Rubik-Medium.ttf");
+  font-weight: 700;
+}
+
+@font-face {
+  font-family: Rubik;
+  src: url("../src/fonts/Rubik-Medium.ttf");
+  font-weight: 800;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Gilroy-Medium", Gilroy, Rubik, sans-serif;
+}
+
+* {
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input,
+textarea {
+  -webkit-user-select: auto !important;
+  -khtml-user-select: auto !important;
+  -moz-user-select: auto !important;
+  -ms-user-select: auto !important;
+  user-select: auto !important;
+}
+
+::-webkit-scrollbar {
+  display: none !important;
+  width: 0px;
+  height: 0px;
+  background-color: transparent !important;
+}
+
+::-webkit-scrollbar-thumb,
+::-webkit-scrollbar-track {
+  width: 0px !important;
+  height: 0px !important;
+  background-color: transparent !important;
+}
+
+:focus,
+:active {
+  outline: none;
+}
+
+a,
+a:active,
+a:focus {
+  outline: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.App {
+  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+}
+
+.container {
+  margin: 0 auto;
+  max-width: 780px;
+  width: calc(100% - 32px);
+  background: transparent;
+  position: relative;
+}
+
+:root {
+  --blue: #026ed2;
+  --dark: #025aac;
+  --black: #081f2c;
+  --white: #fdfdfd;
+  --gray: #c1d6fc;
+}
+
+#root {
+  height: 100vh !important;
+  position: relative !important;
+}
+
+/* input {
+  outline: none;
+  border-radius: 3px !important;
+  padding-left: 8px !important;
+  border: 1px solid var(--blue) !important;
+} */
+/* button {
+  outline: none;
+  cursor: pointer;
+} */
+a {
+  text-decoration: none;
+}
+
+.App div {
+  animation: openPage 0.3s ease;
+}
+
+@keyframes openPage {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+  margin: 0 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--blue);
+  border-radius: 6px;
+  transition: background-color 0.3s;
+  cursor: pointer;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fff;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #1088f9;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #3aa0ff;
+}
+
+.loading_div {
+  margin-top: 100px;
+  width: 100%;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.dowload.app {
+  display: none !important;
+}
+
+@supports (-webkit-touch-callout: none) {
+  .dowload.play {
+    display: none !important;
+  }
+
+  .dowload.app {
+    display: block !important;
+  }
+
+  .bus_details .button_form.fixed,
+  .button_form.fixet,
+  .filter {
+    bottom: calc(env(safe-area-inset-bottom) + 75px) !important;
+  }
+
+  .dowload.app {
+    display: block !important;
+  }
+
+  .toolbar {
+    padding-bottom: env(safe-area-inset-bottom) !important;
+  }
+
+  input[type="date"],
+  input[type="time"] {
+    background-color: #fff !important;
+    -webkit-min-logical-width: calc(100% - 16px) !important;
+  }
+
+  select {
+    font-size: 14px !important;
+    background-color: #fff !important;
+  }
+
+  .btn_close_block_modal {
+    bottom: calc(env(safe-area-inset-bottom) + 20px) !important;
+  }
+
+  .nav .htkz {
+    bottom: env(safe-area-inset-bottom) !important;
+  }
+
+  .chat .if_con {
+    height: calc((100vh - 130px) - env(safe-area-inset-bottom)) !important;
+  }
+
+  .specific .img_save form {
+    display: none !important;
+  }
+}
+
+.specific .nav_block {
+  padding-top: 30px !important;
+}
+
+.not_data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400 !important;
+  text-transform: uppercase;
+}
+
+.not_data img {
+  width: 50px;
+}

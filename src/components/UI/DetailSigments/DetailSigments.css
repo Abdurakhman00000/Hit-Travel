@@ -1,0 +1,94 @@
+.detail_segments {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.detail_segments h2 {
+  margin-top: 5px;
+  color: #081f2c;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.detail_segments h3 {
+  margin-top: 5px;
+  color: #081f2c;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.detail_segments .grid {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail_segments .raid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+}
+
+.detail_segments p {
+  color: var(--black);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.detail_segments .label {
+  color: #aaa;
+}
+
+.detail_segments .reis_div {
+  display: flex;
+  flex-direction: column;
+  padding: 12px 0;
+  padding-left: 50px;
+  border-bottom: 1px solid var(--gray);
+}
+
+.detail_segments .reis_div .fly {
+  width: 60px;
+}
+
+.detail_segments .air {
+  display: flex;
+  align-items: center;
+}
+
+.detail_segments .air img {
+  margin: 0 auto;
+}
+
+.detail_segments .air .image_center {
+  margin: 0 5px;
+}
+
+.detail_segments .line {
+  position: absolute;
+  top: 50px;
+  bottom: 50px;
+  left: 20px;
+  width: 2px;
+  margin: auto;
+  background: var(--blue);
+}
+
+.detail_segments .line .circle1,
+.detail_segments .line .circle2 {
+  width: 10px;
+  height: 10px;
+  border: 3px solid var(--blue);
+  position: absolute;
+  border-radius: 50%;
+}
+
+.detail_segments .line .circle1 {
+  left: -4px;
+  top: -10px;
+}
+
+.detail_segments .line .circle2 {
+  left: -4px;
+  bottom: -10px;
+}

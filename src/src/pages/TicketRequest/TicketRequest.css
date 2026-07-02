@@ -1,0 +1,156 @@
+.ticket_request .grid {
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+  background: var(--white);
+  border-radius: 10px;
+  padding: 16px 0;
+}
+
+.ticket_request .column {
+  padding: 0 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.ticket_request .grid .text {
+  color: #aaa;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.ticket_request .grid .title {
+  color: var(--black);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.ticket_request .grid .price {
+  color: var(--black);
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.ticket_request .status {
+  margin-top: 3px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ticket_request .hr {
+  width: 100%;
+  height: 1px;
+  background: var(--gray);
+  margin: 12px 0;
+}
+
+.ticket_request .status.green {
+  color: rgb(3, 196, 3);
+}
+
+.ticket_request .status.yellow {
+  color: rgb(255, 200, 0);
+}
+
+.ticket_request .status.red {
+  color: red;
+}
+
+.button-cancel-modal {
+  width: 100%;
+  height: 50px;
+  background-color: #cdcdcd;
+  color: black;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 16px;
+}
+
+.button-ok {
+  width: 100%;
+  height: 50px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 16px;
+}
+
+.button-cancel {
+  width: 170px;
+  height: 50px;
+  background-color: #ff0000;
+  color: white;
+  border: none;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 16px;
+}
+
+.button-cancel:hover {
+  background-color: #cc0000;
+}
+
+.ticket_request .info {
+  margin-top: 12px;
+  display: grid;
+  border-radius: 10px;
+  grid-template-columns: 30px 1fr;
+  gap: 12px;
+  background: var(--white);
+  padding: 12px;
+  border: 1px solid rgb(255, 0, 0, 0.5);
+}
+
+.ticket_request .info .text {
+  font-size: 14px;
+  font-weight: 400;
+  color: #524f4f !important;
+}
+
+.ticket_request .air_box {
+  padding: 16px 0;
+  border-radius: 12px;
+}
+
+.flex_modal {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.container_modal {
+  padding: 0 16px;
+  padding-bottom: 40px;
+}
+
+.text_modal {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #000000;
+}

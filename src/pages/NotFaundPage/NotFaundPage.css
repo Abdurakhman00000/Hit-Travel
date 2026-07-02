@@ -1,0 +1,49 @@
+.not_faund_page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgb(0, 0, 0, 0.7);
+}
+.not_faund_page .block {
+  max-width: 300px;
+  width: 90%;
+  min-height: 30px;
+  background: #fff;
+  border-radius: 15px;
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.not_faund_page .block h1 {
+  text-align: center;
+  font-size: 25px;
+  font-weight: 600;
+  color: red;
+}
+.not_faund_page .btn {
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+  cursor: pointer;
+  background: var(--blue);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+}
+.not_faund_page .btn:hover {
+  background: #0055a5;
+}
+.not_faund_page .icon {
+  margin-left: 15px;
+}
+.not_faund_page .note_icon {
+  margin: 20px;
+}

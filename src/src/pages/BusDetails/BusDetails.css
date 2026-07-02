@@ -1,0 +1,243 @@
+.bus_details {
+  width: 100%;
+  padding-bottom: 220px;
+}
+.modal-content {
+  display:flex;
+  flex-direction: column;
+  justify-content: flex-end;  /* Перемещает все элементы по горизонтали в конец */
+  align-items: flex-end; 
+  height: auto;
+  /* padding: 20px;
+  background: white;
+  border-radius: 8px;
+  max-width: 80%;
+  margin: 0 auto; */
+}
+
+.close-btn {
+ padding: 10px;
+ align-items: center;
+ justify-content: center;
+ color: white;
+ background-color: var(--blue);
+ border-color: var(--blue);
+ border-radius: 6px;
+ margin: 20px;
+ display: flex;
+align-items: end;
+width: 100px;
+}
+
+.bus_details .slide {
+  margin: 0 auto;
+  max-width: 820px;
+}
+
+.bus_details .slide_border {
+  border: none;
+}
+
+.bus_details .slide img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.bus_details .slick-dots {
+  margin-bottom: 35px;
+}
+
+.bus_details h1 {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.bus_details h2 {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.bus_details .hr {
+  width: 100%;
+  height: 1px;
+  background: transparent !important;
+  margin: 6px 0;
+}
+
+.bus_details p {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--black);
+}
+
+.bus_details span {
+  font-size: 14px;
+  font-weight: 300;
+  color: gray;
+}
+
+.bus_details a {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--black);
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  text-decoration: underline;
+}
+
+.bus_details .bus_details_description {
+  line-height: 1;
+}
+
+.bus_details .next {
+  margin-top: 10px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bus_details .icon {
+  color: var(--blue);
+}
+
+.bus_details .bus_details_block {
+  margin-top: 15px;
+  width: 100%;
+  min-height: 50px;
+  padding: 14px;
+  border-radius: 15px;
+  border: 1px solid var(--gray);
+}
+
+.bus_details .bus_details_blocks {
+  margin: 15px 0;
+  width: 100%;
+  min-height: 50px;
+  /* padding: 14px 0; */
+}
+
+.bus_details .day_night {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin: 3px 0;
+}
+
+.bus_details .btns {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bus_details .btns .link {
+  font-weight: 500;
+  background: transparent;
+  padding: 15px;
+  border-radius: 8px 8px 8px 0;
+  border: 1px solid var(--blue);
+  transition: 0.2s ease;
+}
+
+.bus_details .bus_details_pages {
+  margin-top: 12px;
+}
+
+.bus_details .created {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+}
+
+.bus_details .created_at {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--blue);
+}
+
+.bus_details .gallery {
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.bus_details .gallery img {
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 3px;
+}
+
+.bus_details .photo {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+}
+
+.bus_details .photo_div {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.bus_details .not {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+}
+
+.bus_details .photo img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 35vh;
+  object-fit: cover;
+  object-position: center;
+}
+
+.bus_details .photo_arrows {
+  position: absolute;
+  top: 15px;
+  left: 5%;
+  color: var(--white);
+}
+
+.bus_details .not_data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.bus_details .not_data img {
+  width: 50px;
+}
+
+.bus_details .button_form.fixed {
+  position: fixed;
+  width: 92%;
+  right: 0;
+  left: 0;
+  bottom: 80px;
+  margin: auto;
+}

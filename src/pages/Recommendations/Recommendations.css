@@ -1,0 +1,15 @@
+.recommendations {
+  width: 100%;
+}
+
+.recommendations .fire {
+  position: absolute;
+  color: rgb(255, 30, 0);
+  top: -6px;
+  right: -5px;
+  animation: swing 0.5s ease infinite;
+}
+
+.recommendations .rec {
+  padding-bottom: 120px;
+}

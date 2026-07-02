@@ -1,0 +1,83 @@
+:root {
+  --bac_air: rgb(193, 214, 252, 0.2);
+}
+
+.modal_classes .type_box {
+  width: 100%;
+  padding: 16px;
+  border-radius: 8px;
+  background: var(--bac_air);
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+  transition: 0.5s ease;
+}
+
+.modal_classes .type_box h1 {
+  color: #737373;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.filt_one {
+  display: flex;
+  gap: 100px;
+  align-items: center;
+  margin-top: 10px;
+  padding-top: 10px;
+  border-top: 1px solid var(--gray);
+}
+@media (max-width: 768px) {
+  .filt_one {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0px;
+    padding-bottom: 10px;
+  }
+}
+.map_mest_travel .mest.cursor {
+  margin: 0;
+}
+
+.map_mest_travel .air_top {
+  margin: 0;
+}
+
+.map_mest_travel .air_cities {
+  border-radius: 3px;
+  padding: 10px;
+  background: var(--bac_air);
+  margin-bottom: 10px;
+}
+
+.map_mest_travel .air_between {
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.map_mest_travel .air_save {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.map_mest_travel .air_between .name {
+  font-size: 15px;
+  color: var(--black);
+  font-weight: 500;
+}
+
+.map_mest_travel .air_save p {
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.filt_box {
+padding-bottom: 10px;
+}

@@ -1,0 +1,659 @@
+.reis {
+  width: 100%;
+  padding-bottom: 160px;
+  background: #fff;
+}
+
+.reis .img_loader {
+  top: 0;
+  left: 0;
+  position: fixed;
+  width: 100%;
+  height: 100vh;
+  background: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99;
+}
+
+.reis .img_loader img {
+  max-width: 250px;
+  width: 100%;
+}
+
+.reis .exit {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  z-index: 99;
+  font-weight: 300;
+  color: var(--white);
+}
+
+.reis .slide {
+  margin: 0 auto;
+  max-width: 820px;
+  width: 100%;
+}
+
+.reis .slide_border {
+  border: none;
+}
+
+.reis .slide img {
+  width: 100%;
+  height: 265px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.reis .icon_bl {
+  cursor: pointer;
+  color: #026ed2;
+}
+
+.reis .category {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.reis .category::-webkit-scrollbar {
+  display: none;
+}
+
+.reis .category .btn {
+  margin-top: 8px;
+  margin-right: 8px;
+  padding: 6px 12px;
+  color: var(--unnamed, #000);
+  text-align: center;
+  font-size: 14px;
+  font-weight: 400;
+  border-radius: 3px;
+  background-color: transparent;
+  border: 1px solid var(--unnamed, #026ed2);
+}
+
+.reis .btn.active {
+  background: var(--blue);
+  color: var(--unnamed, #fdfdfd);
+  font-weight: 400;
+}
+
+.reis .slick-dots {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%);
+  margin-bottom: 35px;
+  width: 70%;
+  height: 20px;
+  overflow: hidden;
+}
+
+.reis .slick-dots li {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.reis .relative {
+  position: relative;
+}
+
+.reis .icon_blue {
+  position: absolute;
+  top: -60px;
+  left: 0;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.reis .icon_red {
+  font-weight: 500;
+  color: #cd2b1e;
+  cursor: pointer;
+  position: absolute;
+  top: -60px;
+  right: 0;
+}
+
+.reis .head_text {
+  margin-top: 16px;
+  width: 100%;
+  min-height: 50px;
+}
+
+.reis .head_text h1 {
+  color: var(--unnamed, #081f2c);
+  font-size: 18px;
+  font-weight: 500;
+  margin-bottom: 5px;
+  line-height: 1;
+}
+
+.reis .head_text p {
+  color: #777;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+}
+
+.reis .head_text .stars {
+  margin: 5px 0;
+}
+
+.reis .head_text .stars .icon {
+  color: gold;
+  margin-right: 3px;
+}
+
+.reis .services {
+  margin-top: 15px;
+  width: 100%;
+  min-height: 50px;
+  padding: 14px;
+  border-radius: 15px;
+  border: 1px solid var(--gray);
+}
+
+.reis .services_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.reis .services_box {
+  padding: 15px;
+  border-radius: 8px 8px 8px 0;
+  border: 1px solid var(--blue);
+  transition: 0.2s ease;
+}
+
+.reis .services_box h1 {
+  color: var(--unnamed, #081f2c);
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.reis .services_box.active h1 {
+  color: var(--blue);
+  font-weight: 500;
+}
+
+.reis .services h1 {
+  color: var(--unnamed, #081f2c);
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+.reis .services li {
+  margin-left: 20px;
+  color: var(--unnamed, #081f2c);
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.reis .flex_geo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reis .ratingIcon {
+  margin: 0;
+}
+
+.reis .book_tour {
+  display: flex;
+  margin: 0 auto;
+  margin-top: 25px;
+  color: var(--unnamed, #fdfdfd);
+  font-size: 14px;
+  font-weight: 500;
+  padding: 12px 80px;
+  border: none;
+  border-radius: 4px;
+  background: var(--unnamed, #026ed2);
+  box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.reis .book_tour:hover {
+  background: var(--dark);
+}
+
+.reis .more {
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 5px 15px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  border: none;
+  background: transparent;
+}
+
+.reis .more .icon {
+  margin-left: 10px;
+}
+
+.reis .reviews {
+  padding: 20px 0;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.reis .reviews .reviews_head {
+  width: 92%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+}
+
+.reis .rate_rewiew {
+  margin: 20px auto;
+  width: 30%;
+  height: 60px;
+  border-radius: 10px;
+  background: var(--blue);
+  font-size: 30px;
+  font-weight: 400;
+  color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.reis .reviews .review_block {
+  margin: 0 auto;
+  margin-top: 15px;
+  width: 92%;
+  min-height: 0px;
+  padding: 8px 0;
+  border-top: 1px solid var(--gray);
+}
+
+.reis .reviews .rewiew_blocks {
+  width: 92%;
+  margin: 0 auto;
+  margin-top: 15px;
+  padding: 15px 0;
+  border-top: 1px solid var(--gray);
+}
+
+.reis .reviews .rewiew_blocks h3 {
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--black);
+}
+
+.reis .reviews .rewiew_blocks p {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #acacac;
+}
+
+.reis .reviews .review_block_box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reis .reviews .emoji p {
+  margin: 3px 0 !important;
+}
+
+.reis .reviews .review_block h1 {
+  font-size: 16px;
+  color: var(--black);
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.reis .reviews .review_block h2 {
+  margin-top: 12px;
+  font-size: 15px;
+  color: var(--black);
+  font-weight: 500;
+}
+
+.reis .reviews .review_block p {
+  margin-top: 10px;
+  font-size: 15px;
+  line-height: 1;
+  color: var(--black);
+  font-weight: 400;
+}
+
+.reis .review_block .read {
+  text-align: end;
+  font-weight: 500 !important;
+  cursor: pointer;
+  margin-top: 5px !important;
+}
+
+.reis .reviews .icon {
+  color: gold;
+  margin-left: 3px;
+}
+
+.reis .reviews .date_review {
+  margin-top: 3px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.reis .reviews .date_review p {
+  font-size: 13px;
+  font-weight: 300;
+  color: #b6b6b6;
+  margin: 0 5px 0 0;
+}
+
+.reis .icon_div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+}
+
+.reis .tour_details {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 99999;
+  background: #fff;
+  overflow-x: hidden;
+  padding-bottom: 45px;
+}
+
+.reis .tour_details .tour_box {
+  margin: 0 auto;
+  cursor: pointer;
+  margin-top: 12px;
+  width: 92%;
+  padding: 10px;
+  border: 1px solid var(--gray);
+  border-radius: 10px;
+}
+
+.reis .tour_details .tour_box .contant_one {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.reis .tour_details .tour_box .contant_one p span {
+  color: var(--black);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.reis .tour_details .tour_box .contant_two {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.reis .tour_details .tour_box .contant_two .div {
+  display: flex;
+  align-items: center;
+}
+
+.reis .tour_details .tour_box .contant_two .div.pricediv {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 0;
+}
+
+.reis .tour_details .tour_box .contant_two .div.pricediv h3 {
+  font-size: 18px;
+}
+
+.reis .tour_details .tour_box .contant_two .div .btnp {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.reis .tour_details .tour_box .contant_two .icon {
+  margin-right: 10px;
+  color: var(--blue);
+}
+
+.reis .tour_details .tour_box .contant_two p {
+  color: var(--black);
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.reis .tour_details .tour_box .contant_two h3 {
+  width: 100%;
+  color: var(--black);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.reis .tour_details .tour_box h1 {
+  width: 90%;
+  color: var(--black);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.reis .tour_details .tour_box p {
+  color: var(--black);
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.reis .tour_details .btn_tour {
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 500;
+  padding: 3px 12px;
+  border-radius: 10px;
+  background: var(--blue);
+  border: none;
+  display: flex;
+  margin: auto auto 0 auto;
+}
+
+.reis .tour_details .price {
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  margin: 5px auto;
+  text-align: center;
+}
+
+.reis .reviewscount {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.reis .hr {
+  width: 100%;
+  height: 1px;
+  background: var(--gray);
+  margin: 0;
+}
+
+.reis .black_box {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--black);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999999;
+}
+
+.reis .black_box img {
+  margin: 0 auto;
+  width: 99%;
+  height: 250px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.reis .black_box .back {
+  position: absolute;
+  top: 20px;
+  left: 15px;
+  color: var(--white);
+}
+
+.reis .overflowDiv {
+  padding: 0 4%;
+  height: 100vh;
+  padding-bottom: 200px;
+  overflow-x: hidden;
+}
+
+.reis .gallery {
+  margin-top: 10px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px;
+  overflow-y: hidden;
+}
+
+.reis .gallery img {
+  width: 100%;
+  height: 15vh;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 8px;
+}
+
+.reis .geo {
+  margin: 20px 0;
+  padding: 10px 0;
+  min-height: 90px;
+  border-top: 1px solid var(--gray);
+  border-bottom: 1px solid var(--gray);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.reis .box_open {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--blue);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.reis .div_geo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.reis .div_geo:nth-child(1) {
+  border-right: 1px solid var(--gray);
+}
+
+.reis .rate {
+  width: 50px;
+  padding: 5px 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 3px;
+  background: var(--blue);
+}
+
+.reis .ratingIcon {
+  width: 50px;
+}
+
+.reis .map {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: #fff;
+  z-index: 99999;
+}
+
+.reis .map canvas {
+  height: 100vh;
+}
+
+.reis .map_head {
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translate(-50%);
+  width: 90%;
+  padding: 10px;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: 40px 1fr 40px;
+  align-items: center;
+  background: #fff;
+  z-index: 9999999;
+}
+
+.button_form.fixet {
+  margin: 0;
+  position: fixed;
+  left: 50%;
+  bottom: 80px;
+  width: 92%;
+  transform: translate(-50%);
+  z-index: 99;
+}
+.reis .bold_mini {
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.reis .slider_dot-beck {
+  position: relative;
+}
+
+.reis .slick-arrow.slick-next {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.reis .slick-arrow.slick-next::before {
+  position: absolute;
+  top: 110px;
+  right: 10px;
+  content: url("../../img/next.svg");
+}
+
+.reis .slick-arrow.slick-prev {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 12;
+}
+
+.reis .slick-arrow.slick-prev::before {
+  position: absolute;
+  top: 110px;
+  left: 10px;
+  content: url("../../img/prev.svg");
+}

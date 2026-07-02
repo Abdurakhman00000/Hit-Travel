@@ -1,0 +1,41 @@
+/* Day.css */
+
+.day_leng {
+  width: 100%;
+}
+
+.day_leng .text {
+  font-size: 13px;
+  color: #888;
+  text-align: center;
+  margin: 10px 0;
+}
+
+.day_leng .day_box {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
+  gap: 5px;
+}
+
+.day_leng button {
+  padding: 10px 10px;
+  background-color: none;
+  font-size: 15px;
+  color: var(--black);
+  border: none;
+  border: 1px solid #cdcdcd;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+.day_leng button.selected {
+  background-color: rgba(2, 110, 210, 0.13);
+  color: #0033ff;
+  border: 1px solid #0033ff;
+}
+
+.day_leng button:hover {
+  background-color: rgba(2, 110, 210, 0.256);
+  color: #0033ff;
+  border: 1px solid #0033ff;
+}

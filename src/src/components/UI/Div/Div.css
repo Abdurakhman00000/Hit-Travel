@@ -1,0 +1,37 @@
+.div_loader {
+  width: 100%;
+  height: 385px;
+  display: block;
+  margin: auto;
+  position: relative;
+  background: #fff;
+  box-sizing: border-box;
+}
+.div_loader::after {
+  content: "";
+  width: 100%;
+  height: 385px;
+  top: 0;
+  left: 0;
+  position: absolute;
+  background-image: linear-gradient(
+      90deg,
+      transparent,
+      var(--gray) 50%,
+      transparent 100%
+    ),
+    linear-gradient(#ddd 100px, transparent 0),
+    linear-gradient(#ddd 16px, transparent 0),
+    linear-gradient(#ddd 50px, transparent 0);
+  background-repeat: no-repeat;
+  background-size: 100px 320px, 100% 320px, 100% 70px, 100% 20px;
+  background-position: -185px 0, center 0, center 115px, center 142px;
+  box-sizing: border-box;
+  animation: div_loaderanimloader 1s linear infinite;
+}
+
+@keyframes div_loaderanimloader {
+  to {
+    background-position: 350px 0, center 0, center 115px, center 142px;
+  }
+}

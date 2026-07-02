@@ -1,0 +1,78 @@
+.pay {
+  height: 100vh;
+  background: #edf1fa;
+}
+
+.pay h2 {
+  margin-top: 15px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.summa {
+  margin-top: 12px;
+  width: 100%;
+  border-radius: 5px;
+  display: flex;
+  padding: 8px 0;
+  flex-direction: column;
+  background: var(--white);
+}
+
+.summa .text {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.summa .gray {
+  font-size: 14px;
+  font-weight: 400;
+  color: #888;
+}
+
+.summa .between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+}
+
+.summa .hr {
+  width: 100%;
+  height: 1px;
+  background: var(--gray);
+}
+
+.decor .oplata_div {
+  cursor: pointer;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 5px;
+  padding: 10px;
+  border: 1px solid var(--gray);
+  width: 100%;
+}
+
+.pay .info {
+  margin-top: 12px;
+  display: grid;
+  border-radius: 5px;
+  grid-template-columns: 30px 1fr;
+  gap: 12px;
+  background: var(--white);
+  padding: 12px;
+  border: 1px solid rgb(255, 0, 0, 0.5);
+}
+
+.pay .info .text {
+  font-size: 14px;
+  font-weight: 400;
+  color: #524f4f !important;
+}

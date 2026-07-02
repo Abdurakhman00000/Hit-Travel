@@ -1,0 +1,395 @@
+.details_tour {
+  width: 100%;
+  padding-bottom: 120px;
+  background: #fff;
+}
+
+.details_tour .tour_block.mer {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 20px 12px;
+}
+
+.details_tour .block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.details_tour .block .flex {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2.5fr 1fr;
+}
+
+.details_tour .block .flex .icons_flex {
+  display: flex;
+  justify-content: end;
+}
+
+.details_tour .tour_block .icon {
+  color: gold;
+  margin-right: 3px;
+}
+
+.details_tour .tour_block.top img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.details_tour h1 {
+  color: #081f2c;
+  font-size: 17px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.details_tour h2 {
+  color: #081f2c;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.details_tour p {
+  color: #081f2c;
+  font-size: 14px;
+  font-weight: 400;
+}
+
+.details_tour .icon_blue {
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.details_tour .icon_red {
+  margin-left: 8px;
+  font-weight: 500;
+  color: #cd2b1e;
+  cursor: pointer;
+}
+
+.details_tour .tour_block.top {
+  margin-top: 16px;
+}
+
+.details_tour .nav_tour {
+  display: flex;
+}
+
+.details_tour .tour_block .right {
+  margin-left: 8px;
+}
+
+.details_tour .tour_block .icons {
+  margin-left: auto;
+  display: flex;
+}
+
+.details_tour .tour_block .hr {
+  width: 100%;
+  height: 1px;
+  background: var(--gray);
+  margin: 15px 0;
+}
+
+.details_tour .tour_block a {
+  color: #026ed2;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.details_tour .tour_block_box {
+  width: 100%;
+  min-height: 0px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.details_tour .tour_block_box h2 {
+  font-weight: 500;
+}
+
+.details_tour .text_p,
+.details_tour .tour_block_box p {
+  color: #888;
+}
+
+.details_tour .tour_block .hr_box {
+  width: 100%;
+  height: 1px;
+  background: var(--gray);
+}
+
+.details_tour .tour_block_box img {
+  margin-right: 8px;
+}
+
+.details_tour .tour_block_box.start {
+  display: flex;
+  align-items: center;
+}
+
+.details_tour .photo {
+  margin: 0;
+  margin-top: 8px;
+  width: 100%;
+  height: 125px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+}
+
+.details_tour .tour_block .hr_up {
+  width: 100%;
+  height: 1px;
+  background: #ddd;
+  margin-top: 12px;
+}
+
+.details_tour .tour_block .reis_div {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.details_tour .tour_block .reis_div .fly {
+  width: 60px;
+}
+
+.details_tour .tour_block .center {
+  color: var(--blue);
+  text-align: center;
+  font-size: 10px;
+  font-weight: 300;
+}
+
+.details_tour .tour_block .left {
+  margin-left: auto;
+  text-align: end;
+}
+
+/* .details_tour .tour_block .left h2 {
+  text-align: end;
+} */
+.details_tour .tour_block .gold {
+  margin-left: auto;
+  background: goldenrod;
+  padding: 0 2px;
+  border-radius: 2px;
+  color: #081f2c;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.details_tour .tour_block .air {
+  display: flex;
+  align-items: center;
+}
+
+.details_tour .tour_block .air img {
+  margin: 0 auto;
+}
+
+.details_tour .tour_block .air .image_center {
+  margin: 0 5px;
+}
+
+.details_tour .tour_block h3 {
+  color: #081f2c;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.details_tour .tour_block h4 {
+  color: #081f2c;
+  font-size: 11.5px;
+  font-weight: 500;
+}
+
+.details_tour .tour_block .hr_min {
+  width: 100%;
+  height: 0.1px;
+  background: #cdcdcd;
+  margin: 8px 0;
+}
+
+.details_tour .text_center {
+  margin-bottom: 15px;
+  padding: 0;
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  padding: 0 0 6px 0;
+  border-bottom: 1px dotted #ddd;
+}
+
+.details_tour .text_center h3 {
+  color: var(--black);
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.details_tour .sale {
+  text-align: end;
+  color: #026ed2;
+  font-size: 10px !important;
+  font-weight: 400;
+  text-decoration: line-through;
+}
+
+.details_tour .check {
+  display: flex;
+}
+
+.details_tour .tour_block .end {
+  text-align: end;
+}
+
+.details_tour .tour_block .end h2 {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.details_tour .tour_block .green {
+  text-align: center;
+  color: #12bd23;
+  font-size: 13px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  line-height: 1;
+}
+
+.details_tour .tour_block .circle {
+  margin: 0 auto;
+  width: 80%;
+  min-height: 20px;
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  flex-direction: column;
+  border-radius: 10px;
+  border: 1px solid #026ed2;
+  margin-bottom: 12px;
+}
+
+.details_tour .tour_block .circle h4 {
+  margin-bottom: 3px;
+}
+
+.details_tour .tour_block .circle img {
+  margin: 0 3px;
+}
+
+.details_tour .tour_block .cash {
+  display: flex;
+  align-items: center;
+}
+
+.details_tour .tour_block .cash h2 {
+  margin-left: 8px;
+}
+
+.details_tour .tour_block .cash .gold.blue {
+  color: #fff;
+  background: var(--blue);
+}
+
+.details_tour .tour_block .faq {
+  display: flex;
+  align-items: center;
+}
+
+.details_tour .tour_block .faq .blue {
+  margin-left: 8px;
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.details_tour .tour_block .faq .icon {
+  color: var(--blue);
+  margin-left: auto;
+}
+
+.details_tour .tour_block.cursor {
+  cursor: pointer;
+}
+
+.details_tour .button {
+  display: flex;
+  align-items: center;
+}
+
+.details_tour .button h1 {
+  margin-left: 5px;
+}
+
+.details_tour .advantages {
+  width: 100%;
+}
+
+.details_tour .advantages .modal_div {
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+}
+
+.details_tour .advantages .modal_div .img {
+  margin-right: 12px;
+}
+
+.details_tour .advantages .modal_div p {
+  font-size: 14px;
+}
+
+.details_tour .advantages .modal_div h1 {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.details_tour .advantages .hr {
+  width: 100%;
+  height: 1px;
+  background: #cdcdcd;
+  margin-top: 12px;
+  margin-bottom: 15px;
+}
+
+.details_tour .advantages {
+  padding-bottom: 34px;
+}
+
+.details_tour .button_form.white {
+  box-shadow: none;
+  margin-top: 8px;
+  background: #fff;
+  color: #081f2c;
+  border: 1px solid var(--blue);
+}
+
+.details_tour .h1 {
+  text-align: center;
+  line-height: 1;
+}
+
+.details_tour .hoteldescription {
+  line-height: 1;
+}
+
+.details_tour .next {
+  margin-top: 10px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.details_tour .button_form.m {
+  margin-top: 12px;
+}

@@ -1,0 +1,13 @@
+.meneger_div {
+  margin-top: 30px !important;
+  border: 1px solid var(--gray);
+  background: var(--white) !important;
+}
+
+.mer {
+  margin: 0 !important;
+}
+
+.detail_my_tour .grid .bold {
+  font-weight: 500 !important;
+}

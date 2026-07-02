@@ -1,0 +1,35 @@
+.faq {
+    width: 100%;
+    padding-bottom: 120px;
+}
+
+.faq .tour_block li {
+    margin-left: 12px;
+}
+
+.faq .tour_block .flex {
+    display: flex;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 5fr 0.5fr;
+}
+
+.faq .tour_block h1 {
+    line-height: 1;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--black);
+}
+
+.faq .tour_block p {
+    margin-top: 8px;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--black);
+    line-height: 1;
+}
+
+.faq .icon_faq {
+    margin-left: auto;
+    color: var(--blue);
+}

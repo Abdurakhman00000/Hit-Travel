@@ -1,0 +1,45 @@
+.toolbar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  border-top: 1px solid var(--gray);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding: 10px 0;
+  background: var(--white);
+  z-index: 99;
+}
+
+.toolbar .tour_toolbar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.toolbar .tour_toolbar .icon_div {
+  width: 25%;
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
+  border-radius: 15px;
+}
+
+.toolbar .tour_toolbar .icon_div .icon {
+  color: var(--black);
+}
+
+.toolbar .tour_toolbar .icon_div.active .icon,
+.toolbar .tour_toolbar .icon_div.active p {
+  color: var(--blue);
+}
+
+.toolbar .tour_toolbar .icon_div p {
+  margin-top: 5px;
+  color: var(--black);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+}

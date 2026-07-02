@@ -1,0 +1,104 @@
+.storis {
+    margin: 0 auto;
+    max-width: 865px;
+    min-height: 75px;
+    padding-top: 15px;
+    width: 100%;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+}
+
+.storis .storis_block {
+    gap: 10px;
+    display: flex;
+    overflow-y: hidden;
+}
+
+.storis .storis_content {
+    width: 60px;
+    height: 60px;
+}
+
+.storis .storis_content img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.storis .storis_content:first-child {
+    margin-left: 5%;
+}
+
+.storis .storis_content:last-child {
+    margin-right: 5%;
+}
+
+.storis .status {
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 999999;
+    background: black;
+}
+
+.storis .not_status {
+    top: 0;
+    left: 0;
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: 999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.486);
+}
+
+.storis .status img {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.storis .status video {
+    width: 100%;
+    height: 100vh;
+    object-fit: cover;
+    object-position: center;
+}
+
+.storis .renge {
+    top: 8px;
+    left: 5%;
+    width: 90%;
+    height: 5px;
+    position: absolute;
+    border: none !important;
+    border-radius: 2px !important;
+    outline: none !important;
+    background: rgba(61, 61, 61, 0.6);
+    -webkit-appearance: none;
+}
+
+.storis .renge::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none !important;
+    outline: none;
+    width: 30px;
+    height: 5px;
+    border-radius: 3px !important;
+    background: #d8d8d8;
+}
+
+.storis .close {
+    position: absolute;
+    top: 20px;
+    right: 10px;
+    font-size: 45px;
+    color: #686868;
+    z-index: 99999999;
+}

@@ -1,0 +1,67 @@
+.notifications {
+  background-color: #fff;
+  width: 100%;
+  min-height: 400px;
+}
+.notifications .podarka {
+  border-radius: 10px;
+  background: var(--white);
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  padding: 4px 47px 4px 8px;
+  gap: 12px;
+  margin-top: 15px;
+}
+.notifications .podarka_img {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.notifications .bonus {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+.notifications .bonus h6 {
+  color: var(--black);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: -0.24px;
+}
+.notifications .bonus p {
+  color: var(--black);
+  font-size: 13px;
+  font-weight: 400;
+}
+.notifications_all .text {
+  color: var(--black);
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 300;
+  margin-top: 15px;
+}
+.notifications h2 {
+  margin: 0 auto;
+  margin-top: 50px;
+  width: 50%;
+  text-align: center;
+  color: var(--black);
+  font-size: 15px;
+  font-weight: 500;
+}
+.notifications .not_data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 60px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.notifications .not_data img {
+  width: 50px;
+}

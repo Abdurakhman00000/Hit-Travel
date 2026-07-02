@@ -1,0 +1,72 @@
+.insurance_tab_panel {
+  padding: 20px 0 30px;
+}
+
+.insurance_tab_intro h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--black);
+  margin-bottom: 8px;
+}
+
+.insurance_tab_intro p {
+  font-size: 14px;
+  color: #5a6b7d;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.insurance_product_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.insurance_product_card {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  text-align: left;
+  padding: 16px;
+  border-radius: 12px;
+  border: 2px solid transparent;
+  background: rgb(193, 214, 252, 0.2);
+  cursor: pointer;
+  transition: 0.25s ease;
+  color: var(--black);
+}
+
+.insurance_product_card.active {
+  border-color: var(--blue);
+  background: rgba(2, 110, 210, 0.12);
+}
+
+.insurance_product_card h3 {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.insurance_product_card p {
+  font-size: 13px;
+  color: #5a6b7d;
+  line-height: 1.4;
+}
+
+.insurance_tab_cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+@media (max-width: 768px) {
+  .insurance_product_grid {
+    grid-template-columns: 1fr;
+  }
+
+  .insurance_product_card {
+    width: 100%;
+  }
+}

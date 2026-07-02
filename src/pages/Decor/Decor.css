@@ -1,0 +1,395 @@
+.decor {
+  width: 100%;
+  min-height: 50px;
+  background: #fff;
+  padding-bottom: 120px;
+}
+
+.decor h1 {
+  margin-top: 12px;
+  color: var(--black);
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.decor h2 {
+  color: var(--black);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.decor a {
+  bottom: 12px;
+  right: 8px;
+  position: absolute;
+  text-align: end;
+  color: var(--blue);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.decor .red_text {
+  color: #cd2b1e;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.decor .info {
+  font-size: 15px;
+  font-weight: 400;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.decor .decor_div_inn {
+  width: 75%;
+  height: 70px;
+  position: relative;
+}
+
+.decor_hotel .decor_div,
+.decor .decor_div {
+  width: 100%;
+  height: 90px;
+  position: relative;
+}
+
+.decor_hotel .red,
+.decor .red {
+  margin-top: 3px;
+  text-align: end;
+  font-weight: 400 !important;
+  font-size: 13px !important;
+  color: red !important;
+}
+
+.decor .decor_div .div_onclick {
+  position: absolute;
+  top: 22px;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.decor .decor_div .country_div {
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  padding: 8px;
+  overflow-x: hidden;
+  border-radius: 10px;
+  background: var(--white);
+  box-shadow: 0px 10px 15px 5px rgba(0, 0, 0, 0.491);
+  z-index: 1;
+  animation: openSelect 0.3s ease;
+}
+
+.decor .decor_div .country_div p {
+  margin: 3px 0;
+  cursor: pointer;
+}
+
+.decor .decor_div .country_div p:hover {
+  color: var(--blue);
+}
+
+@keyframes openSelect {
+  0% {
+    opacity: 0;
+    height: 0;
+  }
+
+  100% {
+    opacity: 1;
+    height: 150px;
+  }
+}
+
+.decor .decor_div .icon {
+  right: 8px;
+  bottom: 20px;
+  position: absolute;
+  margin-left: auto;
+  cursor: pointer;
+  color: var(--blue);
+}
+
+.decor .decor_div div {
+  display: block;
+}
+
+.decor .btn {
+  margin-top: 15px;
+  width: 100%;
+  height: 40px;
+  border: none;
+  color: var(--white);
+  font-size: 16px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--blue);
+  border-radius: 10px;
+}
+
+.decor .btn:hover {
+  background: var(--dark);
+}
+
+.decor .pol {
+  display: flex !important;
+  gap: 4px;
+  margin-top: 5px;
+  margin-bottom: 18px;
+}
+
+.decor .pol .blue,
+.decor .pol .redd {
+  width: 105px;
+  height: 35px;
+  display: flex;
+  opacity: 0.6;
+  color: var(--blue);
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: 400;
+  border: 1px solid #c5c5c5;
+}
+
+.decor .pol .redd {
+  color: #eb4288;
+}
+
+.decor .pol .blue.active {
+  opacity: 1;
+  color: var(--blue);
+  background: rgba(111, 153, 237, 0.1);
+  border: 1px solid #6f99ed;
+}
+.decor .pol .redd.active {
+  opacity: 1;
+  color: #eb4288;
+  background: rgb(235, 66, 136, 0.1);
+  border: 1px solid #eb4288;
+}
+
+.decor .loading_box {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.decor .decor_btn {
+  cursor: pointer;
+  width: 100%;
+  margin: 12px 0;
+  display: flex;
+  font-size: 25px;
+  border-radius: 8px;
+  padding: 5px;
+  border: 1px solid #cdcdcd;
+  align-items: center;
+  justify-content: center;
+}
+
+.decor .img_app {
+  margin: 12px 0;
+  border-radius: 8px;
+  border: 1px solid #cdcdcd;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.decor .decor_modal {
+  margin-top: 12px;
+}
+
+.decor .oplata_div {
+  cursor: pointer;
+  color: var(--black);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 15px;
+  font-weight: 400;
+  margin-bottom: 12px;
+  border-radius: 5px;
+  padding: 10px;
+  width: 100%;
+}
+
+.decor .oplata_div img {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5px;
+}
+
+.decor .mbank {
+  padding-bottom: 45px;
+}
+
+.decor .mbank h1 {
+  margin: 0;
+}
+
+.decor .mbank h2 {
+  margin-top: 10px;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.decor .mbank img {
+  margin: 20px auto;
+  display: flex;
+  width: 200px;
+  height: 200px;
+}
+
+.decor .disabled {
+  cursor: not-allowed;
+}
+
+.decor .form_decor {
+  padding-top: 12px;
+}
+
+.decor .tour_block .block_price_head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 30px;
+}
+
+.decor .tour_block h1 {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.decor .tour_block h3 {
+  font-size: 15px;
+  font-weight: 400;
+  color: var(--black);
+}
+
+.decor .hr {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.05);
+  margin: 5px 0 !important;
+}
+
+.decor .block_price_bonus {
+  padding-top: 5px;
+}
+
+.decor .block_price_bonus h2 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--black);
+}
+
+.decor_hotel .tour_block h1,
+.decor .tour_block h1 {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--black);
+}
+
+.decor_hotel .tourist,
+.decor .tourist {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.decor .green {
+  margin-top: 4px;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.decor .button_form.m {
+  margin-top: 25px;
+}
+
+.decor .add_count {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  width: 100%;
+  min-height: 10px;
+  border-radius: 10px;
+  padding: 16px;
+  border: 1px solid var(--gray);
+}
+
+.decor .add_count h1 {
+  margin: 0;
+  color: var(--black);
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.decor .input_form.inn_input {
+  background: rgba(255, 0, 0, 0.15) !important;
+  border: 1px solid red !important;
+}
+
+.decor .box_save {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.decor .box_save .tour_block {
+  margin: 0;
+}
+
+.decor .decor_div {
+   position: relative;
+  /* margin-bottom: 20px; */
+}
+
+.decor .input_form {
+    /* width: 100%;
+  padding: 10px 10px 10px 35px; /* слева отступ для иконки */
+  /* border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;  */
+}
+
+.decor .input_icon {
+  position: absolute;
+  right: 2%;
+  top: 55%;
+  cursor: pointer;
+  transform: translateY(-50%);
+  color: #4851b2; /* цвет иконки */
+}
