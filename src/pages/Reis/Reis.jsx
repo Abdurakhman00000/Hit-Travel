@@ -195,7 +195,7 @@ const Reis = () => {
               <>
                 <div className="head_text">
                   <div className="stars">
-                    {Array.from({ length: dataReis.stars || dataTourDetail[0]?.hotelstars || 0 }, (_, starIndex) => (
+                    {Array.from({ length: Math.min(dataReis.stars || dataTourDetail[0]?.hotelstars || 0, 5) }, (_, starIndex) => (
                       <span key={starIndex}>
                         <FaStar className="icon" size={15} />
                       </span>
