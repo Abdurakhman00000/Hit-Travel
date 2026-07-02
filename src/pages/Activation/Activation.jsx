@@ -72,11 +72,9 @@ const Activation = ({ Alert }) => {
       return;
     }
 
-    const cleanPhone = savedPhone.replace(/\D/g, "");
-
     try {
       const response = await axios.post(url + "/auth/re-send", {
-        phone: cleanPhone,
+        phone: savedPhone,
       });
 
       if (response.data.response === true) {
