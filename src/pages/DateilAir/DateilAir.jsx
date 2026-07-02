@@ -200,10 +200,9 @@ const DateilAir = ({ Alert }) => {
               requestData.is_health_declaration_checked
             }${passengersParams && `&${passengersParams}`}&count=${count.length}`
             try {
-              const response = await axios.post(
-                `${url}/flights/booking`,
-                requestData,
-                { headers: { Authorization: `Bearer ${token}` } }
+              const response = await axios.get(
+                url_book,
+                { headers: { Authorization: `Token ${token}` } }
               )
               setLoader(false)
               if (response.data.message) {
