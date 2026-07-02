@@ -520,7 +520,7 @@ const MainNav = ({
   }, 1);
 
   useEffect(() => {
-    const savedSearchParams = JSON.parse(localStorage.getItem("searchParams"));
+    const savedSearchParams = JSON.parse(localStorage.getItem("searchParams_v2"));
 
     if (savedSearchParams) {
       setDepor(savedSearchParams.depor || {});
@@ -551,7 +551,7 @@ const MainNav = ({
       selectedStars,
       mealModal,
     };
-    localStorage.setItem("searchParams", JSON.stringify(searchParams));
+    localStorage.setItem("searchParams_v2", JSON.stringify(searchParams));
   }, [
     depor,
     countryData,
