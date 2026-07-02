@@ -481,11 +481,15 @@ const MainNav = ({
     axios
       .get(url + "/api/hottours")
       .then((response) => {
-        setTourHot(response.data.hottours.tour);
+        const tours = response.data?.hottours?.tour
+          || response.data?.TheBest_ALL?.PACKETS
+          || [];
+        setTourHot(tours);
         setLoading(false);
       })
       .catch((error) => {
         console.error("Error:", error);
+        setTourHot([]);
         setLoading(false);
       });
   }, []);
