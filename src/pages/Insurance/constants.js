@@ -16,6 +16,7 @@ export const APPROVED_DRIVERS_TYPES = [
   { value: "EXPERIENCE_1_YEAR", label: "Стаж от 1 года" },
   { value: "EXPERIENCE_2_YEARS", label: "Стаж от 2 лет" },
   { value: "EXPERIENCE_3_YEARS", label: "Стаж от 3 лет" },
+  { value: "ACCORDING_TO_WAYBILL", label: "По путевому листу" },
 ];
 
 export const OSAGO_DRIVERS_TYPES = [
@@ -45,6 +46,7 @@ export const INSPECTION_PHOTO_FIELDS = [
 export const KASKO_RISKS = [
   { value: "CAR_PROPERTY_DAMAGE", label: "Ущерб имуществу" },
   { value: "CAR_VOLUNTARY_CIVIL_LIABILITY", label: "Добровольная гражданская ответственность" },
+  { value: "CAR_CARRIER_CIVIL_LIABILITY", label: "Ответственность перевозчика" },
   { value: "CAR_SEATS_PERSONAL_ACCIDENT", label: "Несчастный случай на местах" },
 ];
 
