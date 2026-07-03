@@ -483,7 +483,7 @@ const CityAndCountry = ({
                             <div className="conntent_block_one">
                               <div className="conntent_block_two">
                                 <div className="content_p">
-                                  {Array.from({ length: el.hotelstars }, (_, starIndex) => (
+                                  {Array.from({ length: Math.min(el.hotelstars || 0, 5) }, (_, starIndex) => (
                                     <span key={starIndex}>
                                       <FaStar className="icon" size={15} />
                                     </span>

@@ -606,7 +606,7 @@ const Reis = () => {
               </div>
             )}
             {four && (
-              <YMaps>
+              <YMaps query={{ apikey: process.env.REACT_APP_YANDEX_KEY || '' }}>
                 <div className="map">
                   <div className="map_head">
                     <IoIosArrowBack
