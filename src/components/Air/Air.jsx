@@ -14,13 +14,15 @@ import Loading from '../UI/Loading/Loading'
 import { FaCheck } from 'react-icons/fa'
 import { aviaDateAction, aviaStartAction } from '../../store/actions/aviaDateAction'
 import axios from 'axios'
+import { url } from '../../Api'
 import calendarIcon from '../../img/ic_calendar (1).svg'
 
-function getTodayDate() {
-  const today = new Date()
-  const year = today.getFullYear()
-  const month = String(today.getMonth() + 1).padStart(2, '0')
-  const day = String(today.getDate()).padStart(2, '0')
+function getDefaultFlightDate() {
+  const date = new Date()
+  date.setDate(date.getDate() + 1)
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
   return `${year}-${month}-${day}`
 }
 
@@ -39,8 +41,8 @@ const mow = {
 const Air = ({ Alert, ht }) => {
   const navigate = useNavigate()
   const [dateFilter, setDateFilter] = useState(false)
-  const [dateNightFrom, setDateNightFrom] = useState(getTodayDate())
-  const [dateNightTo, setDateNightTo] = useState(getTodayDate())
+  const [dateNightFrom, setDateNightFrom] = useState(getDefaultFlightDate())
+  const [dateNightTo, setDateNightTo] = useState('')
   const [rangeStart, setRangeStart] = useState(null)
   const [rangeEnd, setRangeEnd] = useState(null)
   const [selectedDay, setSelectedDay] = useState(null)
@@ -171,22 +173,37 @@ const Air = ({ Alert, ht }) => {
   }, [from])
 
   useEffect(() => {
-    console.log("🧩 [useEffect] Сработал! Текущее значение value:", value);
+    const query = value.trim()
+    if (query.length < 2) {
+      setSearchData([])
+      return
+    }
+
+    let cancelled = false
     const getSearch = async () => {
       serLoading_param(true)
-        console.log(`📡 [getSearch] Отправляю API-запрос для: "${value}"`);
       try {
-        const response = await axios(`https://api-wl.myagent.online/api/avia/params/v2/${value}`)
-        setSearchData(response.data)
-        console.log("✅ [getSearch] Данные успешно получены:", response.data);
+        const response = await axios.get(
+          `${url}/avia/params/v2/${encodeURIComponent(query)}`
+        )
+        if (!cancelled) {
+          setSearchData(response.data)
+        }
       } catch (error) {
-        console.error("❌ [getSearch] Ошибка запроса:", error);
-        console.log(error)
+        if (!cancelled) {
+          setSearchData([])
+        }
+        console.warn('avia city search unavailable:', error?.message)
       } finally {
-        serLoading_param(false)
+        if (!cancelled) {
+          serLoading_param(false)
+        }
       }
     }
     getSearch()
+    return () => {
+      cancelled = true
+    }
   }, [value])
 
   useEffect(() => {
@@ -236,7 +253,7 @@ const Air = ({ Alert, ht }) => {
                     <img src={calendarIcon} alt="" />
                     <div>
                       <h1 style={{ marginBottom: '5px' }}> Обратно</h1>
-                      {formatDateWithoutYear(dateNightTo)}{' '}
+                      {dateNightTo ? formatDateWithoutYear(dateNightTo) : '—'}
                     </div>
                   </div>
                 </div>
@@ -394,11 +411,12 @@ const Air = ({ Alert, ht }) => {
                           {el.airports &&
                             el.airports.map((elem) => (
                               <div
+                                key={elem.airportIataCode}
                                 onClick={() =>
                                   setFrom({
                                     ...from,
-                                    name: el.airportName,
-                                    code_name: el.airportIataCode,
+                                    name: elem.airportName,
+                                    code_name: elem.airportIataCode,
                                   }) ||
                                   setModalFrom(false) ||
                                   setValue('')
@@ -514,7 +532,20 @@ const Air = ({ Alert, ht }) => {
                         </div>
                         {el.airports &&
                           el.airports.map((elem) => (
-                            <div className="air_save">
+                            <div
+                              key={elem.airportIataCode}
+                              className="air_save"
+                              onClick={(e) => {
+                                e.stopPropagation()
+                                setTo({
+                                  ...to,
+                                  name: elem.airportName,
+                                  code_name: elem.airportIataCode,
+                                })
+                                setModalTo(false)
+                                setValue('')
+                              }}
+                            >
                               <IoAirplaneSharp color="var(--blue)" size={20} />
                               <div
                                 style={{

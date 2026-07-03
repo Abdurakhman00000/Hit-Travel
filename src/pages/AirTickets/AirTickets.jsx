@@ -123,17 +123,21 @@ const AirTickets = ({ Alert, handleResortClick, openedResorts }) => {
     if (
       loading === false &&
       tickets &&
-      tickets.length > 0 &&
-      tickets.flights.length === 0
+      Array.isArray(tickets.flights) &&
+      tickets.flights.length === 0 &&
+      !(tickets.nearest?.length > 0)
     ) {
       Alert("По вашему запросу ничего не найдено", "warning");
       navigate("/");
     }
   }, [tickets, loading, Alert, navigate]);
 
-  if (!tickets) {
-    console.log(tickets);
-    return null;
+  if (!tickets || loading) {
+    return (
+      <div className="loading_div">
+        <Loader />
+      </div>
+    );
   }
 
   const filterByTime = (flight) => {
