@@ -34,12 +34,12 @@ import Insurance from "../Insurance/Insurance";
 import PaymentSuccess from "../PaymentSuccess/PaymentSuccess";
 
 const bishkek = {
-  id: 912,
+  id: 80,
   name: "Бишкек",
 };
 
 const turkey = {
-  id: 17,
+  id: 4,
   name: "Турция",
 };
 
