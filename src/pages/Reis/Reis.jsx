@@ -67,8 +67,10 @@ const Reis = () => {
 
   useEffect(() => {
     if (code) {
+      const hotelName = dataTour.length > 0 ? (dataTour[0]?.hotelname || "") : "";
+      const params = hotelName ? `?name=${encodeURIComponent(hotelName)}` : "";
       axios
-        .get(url + `/api/detail/hotel/${code}`)
+        .get(url + `/api/detail/hotel/${code}` + params)
         .then((response) => {
           setDataReis(response.data.hotel);
           setKey(response.data.key);
@@ -204,6 +206,15 @@ const Reis = () => {
                   <h1>{dataReis.name || dataTourDetail[0]?.hotelname || ""}</h1>
                   <p>{dataReis.placement || dataTourDetail[0]?.subregionname || ""}</p>
                 </div>
+                {!dataReis.images?.image?.length && dataTourDetail[0]?.hotelUrl && (
+                  <button
+                    onClick={() => window.open(dataTourDetail[0].hotelUrl, "_system")}
+                    className="button_form"
+                    style={{ marginTop: "12px", marginBottom: "4px" }}
+                  >
+                    Фото и описание отеля
+                  </button>
+                )}
                 <div className="head_body_block">
                   <div className="geo">
                     <div className="div_geo">

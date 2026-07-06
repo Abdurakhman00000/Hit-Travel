@@ -67,8 +67,10 @@ const Reis = () => {
 
   useEffect(() => {
     if (code) {
+      const hotelName = dataTour.length > 0 ? (dataTour[0]?.hotelname || "") : "";
+      const params = hotelName ? `?name=${encodeURIComponent(hotelName)}` : "";
       axios
-        .get(url + `/api/detail/hotel/${code}`)
+        .get(url + `/api/detail/hotel/${code}` + params)
         .then((response) => {
           setDataReis(response.data.hotel);
           setKey(response.data.key);

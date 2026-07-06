@@ -14,6 +14,7 @@ import Loading from '../UI/Loading/Loading'
 import { FaCheck } from 'react-icons/fa'
 import { aviaDateAction, aviaStartAction } from '../../store/actions/aviaDateAction'
 import axios from 'axios'
+import { url } from '../../Api'
 import calendarIcon from '../../img/ic_calendar (1).svg'
 
 function getTodayDate() {
@@ -171,12 +172,16 @@ const Air = ({ Alert, ht }) => {
   }, [from])
 
   useEffect(() => {
+    console.log("🧩 [useEffect] Сработал! Текущее значение value:", value);
     const getSearch = async () => {
       serLoading_param(true)
+        console.log(`📡 [getSearch] Отправляю API-запрос для: "${value}"`);
       try {
-        const response = await axios(`https://hit-travel.org/avia/params/v2/${value}`)
+        const response = await axios.get(url + (value ? `/avia/params/v2/${value}/` : `/avia/params/v2/`))
         setSearchData(response.data)
+        console.log("✅ [getSearch] Данные успешно получены:", response.data);
       } catch (error) {
+        console.error("❌ [getSearch] Ошибка запроса:", error);
         console.log(error)
       } finally {
         serLoading_param(false)
