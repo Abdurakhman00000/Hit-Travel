@@ -28,6 +28,14 @@ import { IoSearch } from "react-icons/io5";
 import { GoLocation } from "react-icons/go";
 import { BsChatSquareDots } from "react-icons/bs";
 import { MdArrowForwardIos } from "react-icons/md";
+import {
+  IconAirTickets,
+  IconAuthorTours,
+  IconHotels,
+  IconInsurance,
+  IconTourSearch,
+  NavTabItem,
+} from "./NavTabIcons";
 import { AiOutlineCloseCircle, AiOutlineClose } from "react-icons/ai";
 import { IoIosArrowDropdown, IoIosArrowDropup } from "react-icons/io";
 import Air from "../Air/Air";
@@ -577,40 +585,41 @@ const MainNav = ({
       <Storis />
       <div className="container">
         <div className="nav_box">
-          <div
+          <NavTabItem
+            active={tourDiv.tour}
             onClick={() => clickDiv("tour")}
-            className={`nav_link ${tourDiv.tour && "active"}`}
-          >
-            Поиск туров
-          </div>
-          <div
+            icon={IconTourSearch}
+            label="Поиск туров"
+            shortLabel="Поиск|туров"
+          />
+          <NavTabItem
+            active={avtorDiv.avtor}
             onClick={() => clickDiv("avtor")}
-            className={`nav_link ${avtorDiv.avtor && "active"}`}
-          >
-            Авиабилеты
-          </div>
-          <div
+            icon={IconAirTickets}
+            label="Авиабилеты"
+            shortLabel="Авиа|билеты"
+          />
+          <NavTabItem
+            active={hotelDiv.hotel}
             onClick={() => clickDiv("hotel")}
-            className={`nav_link ${hotelDiv.hotel && "active"}`}
-          >
-            Отели
-          </div>
-          <div onClick={() => navigate("/bus")} className="nav_link">
-            Авторские туры
-          </div>
-          <div
-            onClick={() => clickDiv("hot")}
-            className={`nav_link ${hotDiv.hot && "active"}`}
-          >
-            Горящиe туры
-          </div>
-          <div
+            icon={IconHotels}
+            label="Отели"
+            shortLabel="Отели"
+          />
+          <NavTabItem
+            active={false}
+            onClick={() => navigate("/bus")}
+            icon={IconAuthorTours}
+            label="Авторские туры"
+            shortLabel="Туры"
+          />
+          <NavTabItem
+            active={insuranceDiv.insurance}
             onClick={() => clickDiv("insurance")}
-            className={`nav_link ${insuranceDiv.insurance && "active"}`}
-          >
-            Страхование
-          </div>
-          
+            icon={IconInsurance}
+            label="Страхование"
+            shortLabel="Страховка"
+          />
         </div>
       </div>
       {hotDiv.transition && (
@@ -847,7 +856,7 @@ const MainNav = ({
         </div>
       )}
       {tourDiv.transition && (
-        <div className={tourDiv.tour ? "htkz" : " htkz closed"}>
+        <div className={tourDiv.tour ? "htkz htkz_form" : " htkz closed htkz_form"}>
           {isWhatsAppAvailable() ? (
             <a
               href="https://wa.me/+996700636676?text=Здравствуйте!%0A%0AПишу из приложения Hit Travel%0A%0A"

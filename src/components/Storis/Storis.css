@@ -2,7 +2,7 @@
     margin: 0 auto;
     max-width: 865px;
     min-height: 75px;
-    padding-top: 15px;
+    padding-top: 20px;
     width: 100%;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
 }
@@ -16,6 +16,7 @@
 .storis .storis_content {
     width: 60px;
     height: 60px;
+    cursor: pointer;
 }
 
 .storis .storis_content img {

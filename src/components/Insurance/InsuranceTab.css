@@ -62,11 +62,26 @@
 }
 
 @media (max-width: 768px) {
+  .insurance_tab_panel {
+    padding: 0;
+  }
+
   .insurance_product_grid {
     grid-template-columns: 1fr;
+    flex: 1;
   }
 
   .insurance_product_card {
     width: 100%;
+  }
+
+  .insurance_tab_panel .container {
+    min-height: calc(460px - 90px);
+    display: flex;
+    flex-direction: column;
+  }
+
+  .insurance_tab_cta {
+    margin-top: auto;
   }
 }

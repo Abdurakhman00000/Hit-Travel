@@ -33,7 +33,13 @@ const InsuranceTab = ({ Alert, ht }) => {
   };
 
   return (
-    <div className={ht ? "htkz insurance_tab_panel" : "htkz closed insurance_tab_panel"}>
+    <div
+      className={
+        ht
+          ? "htkz htkz_form insurance_tab_panel"
+          : "htkz closed htkz_form insurance_tab_panel"
+      }
+    >
       <div className="container">
         <div className="insurance_tab_intro">
           <h2>Страхование</h2>
