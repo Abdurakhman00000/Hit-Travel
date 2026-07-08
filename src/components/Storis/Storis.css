@@ -35,6 +35,45 @@
     margin-right: 5%;
 }
 
+@media (max-width: 767px) {
+  .nav .nav_top_card .storis {
+    max-width: none;
+    width: 100%;
+    min-height: 68px;
+    padding-top: 40px;
+    padding-bottom: 2px;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+  }
+
+  .nav .nav_top_card .storis .storis_block {
+    width: 100%;
+  }
+
+  .nav .nav_top_card .storis .storis_content {
+    width: 54px;
+    height: 54px;
+  }
+
+  .nav .nav_top_card .storis .storis_content img {
+    width: 54px;
+    height: 54px;
+  }
+
+  .nav .nav_top_card .storis .storis_content:first-child {
+    margin-left: 4px;
+  }
+
+  .nav .nav_top_card .storis .storis_content:last-child {
+    margin-right: 4px;
+  }
+}
+
+@media (min-width: 768px) {
+  .storis {
+    padding-top: 20px;
+  }
+}
+
 .storis .status {
     top: 0;
     left: 0;

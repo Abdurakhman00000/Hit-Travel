@@ -6,7 +6,7 @@
   width: 100%;
   display: flex;
   align-items: center;
-  padding: 10px 0;
+  padding: 10px 0 calc(10px + env(safe-area-inset-bottom, 0px));
   background: var(--white);
   z-index: 99;
 }

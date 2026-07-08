@@ -12,32 +12,32 @@ function NavTabIconImg({ src, className = "" }) {
 }
 
 export function IconTourSearch() {
-  return <NavTabIconImg src="/icons8-search-toto.png" />;
+  return <NavTabIconImg src="/assets/icon-img/tour-new.jpg" />;
 }
 
 export function IconAirTickets() {
   return (
     <NavTabIconImg
-      src="/icons8-airplane-48.png"
+      src="/assets/icon-img/plane-new.jpg"
       className="nav_tab_img_air"
     />
   );
 }
 
 export function IconHotels() {
-  return <NavTabIconImg src="/hotel.png" />;
+  return <NavTabIconImg src="/assets/icon-img/hotel-new.jpg" />;
 }
 
 export function IconAuthorTours() {
-  return <NavTabIconImg src="/icons8-tour-48.png" />;
+  return <NavTabIconImg src="/assets/icon-img/tour-new.jpg" />;
 }
 
 export function IconHotTours() {
-  return <NavTabIconImg src="/icons8-tour-48.png" />;
+  return <NavTabIconImg src="/assets/icon-img/tour-new.jpg" />;
 }
 
 export function IconInsurance() {
-  return <NavTabIconImg src="/icons8-car-insurance-48.png" />;
+  return <NavTabIconImg src="/assets/icon-img/strah-new.jpg" />;
 }
 
 function renderShortLabel(shortLabel) {

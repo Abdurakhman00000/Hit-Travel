@@ -69,19 +69,66 @@
   .insurance_product_grid {
     grid-template-columns: 1fr;
     flex: 1;
+    gap: 10px;
+    margin-bottom: 12px;
   }
 
   .insurance_product_card {
     width: 100%;
+    padding: 12px;
   }
 
   .insurance_tab_panel .container {
-    min-height: calc(460px - 90px);
+    min-height: calc(var(--htkz-panel-height, 250px) - 40px);
     display: flex;
     flex-direction: column;
   }
 
+  .insurance_tab_intro h2 {
+    font-size: 20px;
+    margin-bottom: 6px;
+  }
+
+  .insurance_tab_intro p {
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .insurance_product_card h3 {
+    font-size: 15px;
+  }
+
+  .insurance_product_card p {
+    font-size: 12px;
+  }
+
   .insurance_tab_cta {
     margin-top: auto;
+    height: 44px;
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 320px) {
+  .insurance_tab_panel .container {
+    min-height: calc(var(--htkz-panel-height, 200px) - 24px);
+  }
+
+  .insurance_tab_intro h2 {
+    font-size: 16px;
+  }
+
+  .insurance_tab_intro p {
+    font-size: 11px;
+    margin-bottom: 8px;
+  }
+
+  .insurance_product_card {
+    padding: 8px 10px;
+  }
+
+  .insurance_tab_cta {
+    height: 40px;
+    font-size: 13px;
   }
 }

@@ -402,7 +402,7 @@ const Calendar = ({
                           <div>
                             {day}
                             {pricesForDate && (
-                              <p className="price_date">{pricesForDate.price} сом</p>
+                              <p className="price_date">{pricesForDate.price} y.e</p>
                             )}
                           </div>
                         ) : (

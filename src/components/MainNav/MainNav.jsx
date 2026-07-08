@@ -582,44 +582,46 @@ const MainNav = ({
 
   return (
     <div className="nav">
-      <Storis />
-      <div className="container">
-        <div className="nav_box">
-          <NavTabItem
-            active={tourDiv.tour}
-            onClick={() => clickDiv("tour")}
-            icon={IconTourSearch}
-            label="Поиск туров"
-            shortLabel="Поиск|туров"
-          />
-          <NavTabItem
-            active={avtorDiv.avtor}
-            onClick={() => clickDiv("avtor")}
-            icon={IconAirTickets}
-            label="Авиабилеты"
-            shortLabel="Авиа|билеты"
-          />
-          <NavTabItem
-            active={hotelDiv.hotel}
-            onClick={() => clickDiv("hotel")}
-            icon={IconHotels}
-            label="Отели"
-            shortLabel="Отели"
-          />
-          <NavTabItem
-            active={false}
-            onClick={() => navigate("/bus")}
-            icon={IconAuthorTours}
-            label="Авторские туры"
-            shortLabel="Туры"
-          />
-          <NavTabItem
-            active={insuranceDiv.insurance}
-            onClick={() => clickDiv("insurance")}
-            icon={IconInsurance}
-            label="Страхование"
-            shortLabel="Страховка"
-          />
+      <div className="nav_top_card">
+        <Storis />
+        <div className="container">
+          <div className="nav_box">
+            <NavTabItem
+              active={tourDiv.tour}
+              onClick={() => clickDiv("tour")}
+              icon={IconTourSearch}
+              label="Поиск туров"
+              shortLabel="Поиск|туров"
+            />
+            <NavTabItem
+              active={avtorDiv.avtor}
+              onClick={() => clickDiv("avtor")}
+              icon={IconAirTickets}
+              label="Авиабилеты"
+              shortLabel="Авиа|билеты"
+            />
+            <NavTabItem
+              active={hotelDiv.hotel}
+              onClick={() => clickDiv("hotel")}
+              icon={IconHotels}
+              label="Отели"
+              shortLabel="Отели"
+            />
+            <NavTabItem
+              active={false}
+              onClick={() => navigate("/bus")}
+              icon={IconAuthorTours}
+              label="Авторские туры"
+              shortLabel="Туры"
+            />
+            <NavTabItem
+              active={insuranceDiv.insurance}
+              onClick={() => clickDiv("insurance")}
+              icon={IconInsurance}
+              label="Страхование"
+              shortLabel="Страховка"
+            />
+          </div>
         </div>
       </div>
       {hotDiv.transition && (

@@ -160,6 +160,14 @@ a:focus {
   --black: #081f2c;
   --white: #fdfdfd;
   --gray: #c1d6fc;
+  --app-toolbar-height: 68px;
+  --htkz-bottom-offset: 0px;
+}
+
+@media (max-width: 767px) {
+  :root {
+    --htkz-bottom-offset: calc(var(--app-toolbar-height) + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 #root {
@@ -271,7 +279,11 @@ a {
   }
 
   .nav .htkz {
-    bottom: env(safe-area-inset-bottom) !important;
+    bottom: var(--htkz-bottom-offset) !important;
+    height: 250px !important;
+    min-height: 250px !important;
+    max-height: 250px !important;
+    padding-bottom: 12px !important;
   }
 
   .chat .if_con {
@@ -280,6 +292,15 @@ a {
 
   .specific .img_save form {
     display: none !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .nav .htkz {
+    height: 200px !important;
+    min-height: 200px !important;
+    max-height: 200px !important;
+    padding-bottom: 8px !important;
   }
 }
 
