@@ -370,13 +370,15 @@
 
 @media (max-width: 767px) {
   .nav .htkz {
-    --htkz-panel-height: 250px;
     bottom: var(--htkz-bottom-offset, 0px) !important;
-    height: 250px !important;
-    min-height: 250px !important;
-    max-height: 250px !important;
-    padding-top: 12px !important;
-    padding-bottom: 12px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    /* leave room for stories+tabs and a bit of background above */
+    max-height: calc(
+      100dvh - var(--htkz-bottom-offset, 60px) - 210px
+    ) !important;
+    padding-top: 11px !important;
+    padding-bottom: 11px !important;
     margin-bottom: 0 !important;
     overflow-y: auto;
     box-sizing: border-box !important;
@@ -386,17 +388,17 @@
   }
 
   .nav .htkz .button_form {
-    margin-top: 10px;
+    margin-top: 7px;
     margin-bottom: 0;
-    height: 44px;
-    font-size: 15px;
+    height: 41px;
+    font-size: 14px;
   }
 
   .nav .htkz .container {
-    padding-top: 4px;
-    padding-bottom: 8px;
-    padding-left: 16px;
-    padding-right: 16px;
+    padding-top: 1px;
+    padding-bottom: 5px;
+    padding-left: 13px;
+    padding-right: 13px;
     transform: none;
     width: 100%;
     max-width: none;
@@ -406,72 +408,86 @@
   }
 
   .nav .htkz .search_block {
-    padding: 4px 0 6px;
+    padding: 1px 0 3px;
   }
 
   .nav .htkz .search_block h1 {
-    font-size: 16px;
+    font-size: 15px;
   }
 
   .nav .htkz .search_block p,
   .nav .htkz .filt_save p,
   .nav .htkz .filt_box p {
-    font-size: 12px;
-    margin-bottom: 4px;
+    font-size: 11px;
+    margin-bottom: 3px;
   }
 
   .nav .htkz .filt_save h1,
   .nav .htkz .filt_box h1 {
-    font-size: 15px;
+    font-size: 14px;
     height: auto;
     line-height: 1.25;
   }
 
   .nav .htkz .filt_new {
-    padding-bottom: 8px;
+    padding-bottom: 5px;
   }
 
   .nav .htkz .filt_grid {
-    margin-top: 10px;
-    padding-top: 10px;
+    margin-top: 7px;
+    padding-top: 7px;
     gap: 0;
   }
 
   .nav .htkz .filt_save {
-    margin-top: 10px;
-    padding-top: 10px;
+    margin-top: 7px;
+    padding-top: 7px;
   }
 
   .nav .htkz .search_block .br {
-    margin: 10px 0;
+    margin: 7px 0;
   }
 
   .nav .htkz .filt_box,
   .nav .htkz .filt_save {
-    padding-top: 2px;
-    padding-bottom: 2px;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .nav .htkz .whenCalendar {
+    padding: 3px 5px;
+  }
+
+  .nav .htkz .whenCalendar h1 {
+    font-size: 11px;
+    margin-bottom: 0 !important;
+  }
+
+  .nav .htkz .flexCalendar {
+    gap: 5px;
   }
 }
 
 @media (max-width: 320px) {
   .nav .htkz {
-    --htkz-panel-height: 200px;
-    height: 200px !important;
-    min-height: 200px !important;
-    max-height: 200px !important;
-    padding-top: 8px !important;
-    padding-bottom: 8px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: calc(
+      100dvh - var(--htkz-bottom-offset, 60px) - 190px
+    ) !important;
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
   }
 
   .nav .htkz .container {
-    padding-left: 12px;
-    padding-right: 12px;
+    padding-left: 11px;
+    padding-right: 11px;
   }
 
   .nav .htkz .button_form {
-    height: 40px;
-    font-size: 14px;
-    margin-top: 6px;
+    height: 37px;
+    font-size: 13px;
+    margin-top: 5px;
   }
 
   .nav .htkz .search_block h1,

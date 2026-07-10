@@ -12,13 +12,13 @@ function NavTabIconImg({ src, className = "" }) {
 }
 
 export function IconTourSearch() {
-  return <NavTabIconImg src="/assets/icon-img/tour-new.jpg" />;
+  return <NavTabIconImg src="/assets/icon-img/new-search2.png" />;
 }
 
 export function IconAirTickets() {
   return (
     <NavTabIconImg
-      src="/assets/icon-img/plane-new.jpg"
+      src="/assets/icon-img/new-plane2.png"
       className="nav_tab_img_air"
     />
   );

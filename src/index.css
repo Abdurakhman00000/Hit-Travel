@@ -281,11 +281,14 @@ a {
 
   .nav .htkz {
     bottom: var(--htkz-bottom-offset) !important;
-    height: 250px !important;
-    min-height: 250px !important;
-    max-height: 250px !important;
-    padding-bottom: 12px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: calc(
+      100dvh - var(--htkz-bottom-offset) - 210px
+    ) !important;
+    padding-bottom: 14px !important;
     margin-bottom: 0 !important;
+    overflow-y: auto !important;
     /* cover any hairline gap above the bottom toolbar */
     box-shadow: 0 3px 0 0 var(--white);
   }
@@ -301,10 +304,12 @@ a {
 
 @media (max-width: 320px) {
   .nav .htkz {
-    height: 200px !important;
-    min-height: 200px !important;
-    max-height: 200px !important;
-    padding-bottom: 8px !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: calc(
+      100dvh - var(--htkz-bottom-offset) - 190px
+    ) !important;
+    padding-bottom: 10px !important;
   }
 }
 

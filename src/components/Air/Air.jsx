@@ -174,17 +174,14 @@ const Air = ({ Alert, ht }) => {
 
   useEffect(() => {
     const query = value.trim()
-    if (query.length < 2) {
-      setSearchData([])
-      return
-    }
-
     let cancelled = false
     const getSearch = async () => {
       serLoading_param(true)
       try {
         const response = await axios.get(
-          `${url}/avia/params/v2/${encodeURIComponent(query)}`
+          query
+            ? `${url}/avia/params/v2/${encodeURIComponent(query)}/`
+            : `${url}/avia/params/v2/`
         )
         if (!cancelled) {
           setSearchData(response.data)
