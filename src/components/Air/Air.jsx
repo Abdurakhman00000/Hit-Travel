@@ -230,7 +230,7 @@ const Air = ({ Alert, ht }) => {
             </div>
           </div>
           <div className="filt_new">
-            <div className="filt_grid">
+            <div className="filt_grid filt_grid_full">
               <div onClick={() => setDateFilter(true)} className="filt_box">
                 {/* <p>Туда {dateNightTo !== "" && "- Обратно"}</p>
                 <h1>

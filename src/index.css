@@ -160,13 +160,14 @@ a:focus {
   --black: #081f2c;
   --white: #fdfdfd;
   --gray: #c1d6fc;
-  --app-toolbar-height: 68px;
+  --app-toolbar-height: 60px;
   --htkz-bottom-offset: 0px;
 }
 
 @media (max-width: 767px) {
   :root {
-    --htkz-bottom-offset: calc(var(--app-toolbar-height) + env(safe-area-inset-bottom, 0px));
+    /* flush to toolbar — no gap between content panel and bottom tabs */
+    --htkz-bottom-offset: calc(var(--app-toolbar-height) + env(safe-area-inset-bottom, 0px) - 1px);
   }
 }
 
@@ -284,6 +285,9 @@ a {
     min-height: 250px !important;
     max-height: 250px !important;
     padding-bottom: 12px !important;
+    margin-bottom: 0 !important;
+    /* cover any hairline gap above the bottom toolbar */
+    box-shadow: 0 3px 0 0 var(--white);
   }
 
   .chat .if_con {

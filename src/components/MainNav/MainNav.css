@@ -371,13 +371,18 @@
 @media (max-width: 767px) {
   .nav .htkz {
     --htkz-panel-height: 250px;
+    bottom: var(--htkz-bottom-offset, 0px) !important;
     height: 250px !important;
     min-height: 250px !important;
     max-height: 250px !important;
     padding-top: 12px !important;
     padding-bottom: 12px !important;
+    margin-bottom: 0 !important;
     overflow-y: auto;
     box-sizing: border-box !important;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    box-shadow: 0 3px 0 0 var(--white);
   }
 
   .nav .htkz .button_form {
@@ -561,6 +566,81 @@
   border-top: 1px solid var(--gray);
 }
 
+.nav .filt_grid.filt_grid_full {
+  grid-template-columns: 1fr;
+}
+
+.nav .filt_grid.filt_grid_full .filt_box {
+  width: 100%;
+}
+
+.flexCalendar {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  align-items: stretch;
+  width: 100%;
+}
+
+.whenCalendar {
+  flex: 1 1 0;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+  background: rgb(242, 240, 240);
+  border-radius: 10px;
+  padding: 6px 8px;
+  display: flex;
+  align-items: center;
+}
+
+.whenCalendar img {
+  padding-right: 8px;
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+}
+
+.whenCalendar > div {
+  min-width: 0;
+  overflow: hidden;
+  flex: 1;
+}
+
+.whenCalendar h1 {
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+@media (max-width: 767px) {
+  .nav .htkz .flexCalendar {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .nav .htkz .whenCalendar {
+    flex: 1 1 0;
+    width: 100%;
+    min-width: 0;
+    padding: 4px 6px;
+  }
+
+  .nav .htkz .whenCalendar img {
+    width: 16px;
+    height: 16px;
+    padding-right: 6px;
+  }
+
+  .nav .htkz .whenCalendar h1 {
+    font-size: 11px;
+    margin-bottom: 2px !important;
+  }
+}
+
 .nav .filt_grid .filt_box.prew {
   padding-left: 15px;
   border-left: 1px solid var(--gray);
@@ -671,38 +751,4 @@
 
 .Calendar td {
   font-weight: 600 !important;
-}
-
-.flexCalendar {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  align-items: center;
-}
-
-@media (max-width: 768px) {
-  .flexCalendar {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 5px;
-  }
-}
-
-.whenCalendar {
-  width: 45%;
-  /* background: var(--gray); */
-  background: rgb(242, 240, 240);
-  border-radius: 10px;
-  padding: 3px 0px 3px 10px;
-  display: flex;
-}
-
-.whenCalendar img {
-  padding-right: 10px;
-}
-
-@media (max-width: 600px) {
-  .whenCalendar {
-    width: 95%;
-  }
 }

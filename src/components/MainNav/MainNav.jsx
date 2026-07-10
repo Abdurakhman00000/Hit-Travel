@@ -612,7 +612,7 @@ const MainNav = ({
               onClick={() => navigate("/bus")}
               icon={IconAuthorTours}
               label="Авторские туры"
-              shortLabel="Туры"
+              shortLabel="Авторские|туры"
             />
             <NavTabItem
               active={insuranceDiv.insurance}
