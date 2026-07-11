@@ -9,9 +9,46 @@ import { IoIosInformationCircle } from "react-icons/io";
 import { createFinikPayment } from "../../api/finikPayment";
 import { getApiErrorMessage } from "../../api/http";
 import finikLogo from "../../img/hit-logo.png";
-import { Browser } from "@capacitor/browser";
 
 const FINIK_PRODUCTS = new Set(["air", "insurance"]);
+
+// Opens Finik payment in native WebView (no URL bar, no browser chrome).
+// Automatically closes when Finik redirects to our success URL.
+function openNativePayment(paymentUrl, successPath, navigate) {
+  const iab = window.cordova?.InAppBrowser;
+
+  if (!iab) {
+    // Web fallback (desktop / dev mode)
+    window.open(paymentUrl, "_blank");
+    return;
+  }
+
+  const browser = iab.open(
+    paymentUrl,
+    "_blank",
+    [
+      "location=no",
+      "toolbar=no",
+      "zoom=no",
+      "hardwareback=yes",
+      "clearcache=yes",
+      "hideurlbar=yes",
+      "toolbarcolor=#FFFFFF",
+    ].join(",")
+  );
+
+  // Auto-close when Finik redirects back to our success URL
+  browser.addEventListener("loadstart", (event) => {
+    if (event.url && event.url.includes("/payment/success")) {
+      browser.close();
+      navigate(successPath);
+    }
+  });
+
+  browser.addEventListener("loaderror", () => {
+    browser.close();
+  });
+}
 
 const Payment = ({ Alert }) => {
   const { deep } = useSelector((state) => state.deep);
@@ -24,6 +61,10 @@ const Payment = ({ Alert }) => {
   const isFinikPayment =
     deep?.paymentType === "finik" || FINIK_PRODUCTS.has(deep?.productType);
 
+  const successPath = deep?.policyId
+    ? `/payment/success?type=insurance&policy_id=${deep.policyId}`
+    : "/payment/success?type=air";
+
   useEffect(() => {
     if (!transactionId || !isFinikPayment) {
       setLoading(false);
@@ -32,10 +73,7 @@ const Payment = ({ Alert }) => {
 
     const initPayment = async () => {
       try {
-        const redirectPath = deep?.policyId
-          ? `/payment/success?type=insurance&policy_id=${deep.policyId}`
-          : "/payment/success?type=air";
-        const data = await createFinikPayment(transactionId, redirectPath);
+        const data = await createFinikPayment(transactionId, successPath);
         setPaymentData(data);
       } catch (err) {
         const message = getApiErrorMessage(err);
@@ -109,7 +147,7 @@ const Payment = ({ Alert }) => {
         )}
 
         <div className="finik_pay_info">
-          <p>После успешной оплаты заказ будет обработан автоматически.</p>
+          <p>После успешной оплаты окно закроется автоматически.</p>
         </div>
 
         {error && <div className="payment_error">{error}</div>}
@@ -118,7 +156,7 @@ const Payment = ({ Alert }) => {
           <button
             type="button"
             className="finik_pay_link"
-            onClick={() => Browser.open({ url: paymentUrl, presentationStyle: "popover" })}
+            onClick={() => openNativePayment(paymentUrl, successPath, navigate)}
           >
             <div className="oplata_div finik_pay_card">
               <img src={finikLogo} alt="Finik Pay" className="finik_pay_logo" />
