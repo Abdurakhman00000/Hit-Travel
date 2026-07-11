@@ -505,7 +505,7 @@ const AppSite = ({ local, Alert }) => {
 
     await axios
       .get(
-        `https://tourvisor.ru/xml/getdates.php?${countryUrl}&currency=1${deporUrl}&regular=1${monthsUrl}&referrer=https://hit-travel.kg`
+        `https://tourvisor.ru/xml/getdates.php?country=${countryData.id}&currency=1&departure=${depor.id}&regular=1${monthsUrl}&referrer=https://hit-travel.kg`
       )
       .then((response) => {
         setDate(response.data);

@@ -1,4 +1,5 @@
 import React from "react";
+import { MdOutlineExplore } from "react-icons/md";
 
 function NavTabIconImg({ src, className = "" }) {
   return (
@@ -29,7 +30,7 @@ export function IconHotels() {
 }
 
 export function IconAuthorTours() {
-  return <NavTabIconImg src="/assets/icon-img/tour-new.jpg" />;
+  return <MdOutlineExplore size={40} color="#2EA4CC" />;
 }
 
 export function IconHotTours() {

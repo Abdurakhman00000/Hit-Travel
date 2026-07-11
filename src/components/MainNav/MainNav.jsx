@@ -424,27 +424,27 @@ const MainNav = ({
       case "hotel":
         setTimeout(() => {
           setHotelDiv((prevState) => ({ ...prevState, transition: false }));
-        }, 700);
+        }, 800);
         break;
       case "hot":
         setTimeout(() => {
           setHotDiv((prevState) => ({ ...prevState, transition: false }));
-        }, 700);
+        }, 800);
         break;
       case "avtor":
         setTimeout(() => {
           setAvtorDiv((prevState) => ({ ...prevState, transition: false }));
-        }, 700);
+        }, 800);
         break;
       case "insurance":
         setTimeout(() => {
           setInsuranceDiv((prevState) => ({ ...prevState, transition: false }));
-        }, 700);
+        }, 800);
         break;
       default:
         setTimeout(() => {
           setTourDiv((prevState) => ({ ...prevState, transition: false }));
-        }, 700);
+        }, 800);
         break;
     }
   }
