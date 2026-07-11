@@ -4,11 +4,12 @@ import "./Payment.css";
 import Header from "../Header/Header";
 import Loader from "../UI/Loader/Loader";
 import { useSelector } from "react-redux";
-import { useNavigate, useSearchParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { IoIosInformationCircle } from "react-icons/io";
 import { createFinikPayment } from "../../api/finikPayment";
 import { getApiErrorMessage } from "../../api/http";
 import finikLogo from "../../img/hit-logo.png";
+import { Browser } from "@capacitor/browser";
 
 const FINIK_PRODUCTS = new Set(["air", "insurance"]);
 
@@ -114,7 +115,11 @@ const Payment = ({ Alert }) => {
         {error && <div className="payment_error">{error}</div>}
 
         {paymentUrl ? (
-          <a href={paymentUrl} target="_blank" rel="noreferrer" className="finik_pay_link">
+          <button
+            type="button"
+            className="finik_pay_link"
+            onClick={() => Browser.open({ url: paymentUrl, presentationStyle: "popover" })}
+          >
             <div className="oplata_div finik_pay_card">
               <img src={finikLogo} alt="Finik Pay" className="finik_pay_logo" />
               <div>
@@ -122,7 +127,7 @@ const Payment = ({ Alert }) => {
                 <span>QR / банковское приложение</span>
               </div>
             </div>
-          </a>
+          </button>
         ) : (
           !error && (
             <button type="button" className="button_form" disabled>
