@@ -380,41 +380,47 @@ const MainNav = ({
   }
 
   function clickDiv(el) {
+    const closePanel = (prev, openKey) => ({
+      ...prev,
+      [openKey]: false,
+      transition: prev[openKey] ? true : prev.transition,
+    });
+
     switch (el) {
       case "hotel":
-        setTourDiv({ ...tourDiv, tour: false });
-        setHotelDiv({ ...hotelDiv, hotel: true, transition: true });
-        setHotDiv({ ...hotDiv, hot: false });
-        setAvtorDiv({ ...avtorDiv, avtor: false });
-        setInsuranceDiv({ ...insuranceDiv, insurance: false });
+        setTourDiv((prev) => closePanel(prev, "tour"));
+        setHotelDiv({ hotel: true, transition: true });
+        setHotDiv((prev) => closePanel(prev, "hot"));
+        setAvtorDiv((prev) => closePanel(prev, "avtor"));
+        setInsuranceDiv((prev) => closePanel(prev, "insurance"));
         break;
       case "hot":
-        setTourDiv({ ...tourDiv, tour: false });
-        setHotelDiv({ ...hotelDiv, hotel: false });
-        setHotDiv({ ...hotDiv, hot: true, transition: true });
-        setAvtorDiv({ ...avtorDiv, avtor: false });
-        setInsuranceDiv({ ...insuranceDiv, insurance: false });
+        setTourDiv((prev) => closePanel(prev, "tour"));
+        setHotelDiv((prev) => closePanel(prev, "hotel"));
+        setHotDiv({ hot: true, transition: true });
+        setAvtorDiv((prev) => closePanel(prev, "avtor"));
+        setInsuranceDiv((prev) => closePanel(prev, "insurance"));
         break;
       case "avtor":
-        setTourDiv({ ...tourDiv, tour: false });
-        setHotelDiv({ ...hotelDiv, hotel: false });
-        setHotDiv({ ...hotDiv, hot: false });
-        setAvtorDiv({ ...avtorDiv, avtor: true, transition: true });
-        setInsuranceDiv({ ...insuranceDiv, insurance: false });
+        setTourDiv((prev) => closePanel(prev, "tour"));
+        setHotelDiv((prev) => closePanel(prev, "hotel"));
+        setHotDiv((prev) => closePanel(prev, "hot"));
+        setAvtorDiv({ avtor: true, transition: true });
+        setInsuranceDiv((prev) => closePanel(prev, "insurance"));
         break;
       case "insurance":
-        setTourDiv({ ...tourDiv, tour: false });
-        setHotelDiv({ ...hotelDiv, hotel: false });
-        setHotDiv({ ...hotDiv, hot: false });
-        setAvtorDiv({ ...avtorDiv, avtor: false });
-        setInsuranceDiv({ ...insuranceDiv, insurance: true, transition: true });
+        setTourDiv((prev) => closePanel(prev, "tour"));
+        setHotelDiv((prev) => closePanel(prev, "hotel"));
+        setHotDiv((prev) => closePanel(prev, "hot"));
+        setAvtorDiv((prev) => closePanel(prev, "avtor"));
+        setInsuranceDiv({ insurance: true, transition: true });
         break;
       default:
-        setTourDiv({ ...tourDiv, tour: true, transition: true });
-        setHotelDiv({ ...hotelDiv, hotel: false });
-        setHotDiv({ ...hotDiv, hot: false });
-        setAvtorDiv({ ...avtorDiv, avtor: false });
-        setInsuranceDiv({ ...insuranceDiv, insurance: false });
+        setTourDiv({ tour: true, transition: true });
+        setHotelDiv((prev) => closePanel(prev, "hotel"));
+        setHotDiv((prev) => closePanel(prev, "hot"));
+        setAvtorDiv((prev) => closePanel(prev, "avtor"));
+        setInsuranceDiv((prev) => closePanel(prev, "insurance"));
         break;
     }
   }
@@ -423,27 +429,27 @@ const MainNav = ({
     switch (el) {
       case "hotel":
         setTimeout(() => {
-          setHotelDiv((prevState) => ({ ...prevState, transition: false }));
+          setHotelDiv((prevState) => ({ ...prevState, transition: prevState.hotel }));
         }, 800);
         break;
       case "hot":
         setTimeout(() => {
-          setHotDiv((prevState) => ({ ...prevState, transition: false }));
+          setHotDiv((prevState) => ({ ...prevState, transition: prevState.hot }));
         }, 800);
         break;
       case "avtor":
         setTimeout(() => {
-          setAvtorDiv((prevState) => ({ ...prevState, transition: false }));
+          setAvtorDiv((prevState) => ({ ...prevState, transition: prevState.avtor }));
         }, 800);
         break;
       case "insurance":
         setTimeout(() => {
-          setInsuranceDiv((prevState) => ({ ...prevState, transition: false }));
+          setInsuranceDiv((prevState) => ({ ...prevState, transition: prevState.insurance }));
         }, 800);
         break;
       default:
         setTimeout(() => {
-          setTourDiv((prevState) => ({ ...prevState, transition: false }));
+          setTourDiv((prevState) => ({ ...prevState, transition: prevState.tour }));
         }, 800);
         break;
     }

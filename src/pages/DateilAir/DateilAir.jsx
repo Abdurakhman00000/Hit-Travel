@@ -66,7 +66,8 @@ const DateilAir = ({ Alert }) => {
     }
   }
 
-  const rulesText = agree?.rules?.[Object.keys(agree.rules)[0]]?.[0]?.text
+  const rulesRaw = agree?.rules?.[Object.keys(agree.rules || {})[0]]?.[0]?.text
+  const rulesText = rulesRaw ? rulesRaw.replace(/\n/g, '<br/>') : null
 
   useEffect(() => {
     setLoading(true)
@@ -594,12 +595,17 @@ const DateilAir = ({ Alert }) => {
               >
                 <Loading />
               </div>
-            ) : (
+            ) : rulesText ? (
               React.createElement('div', {
+                style: { fontSize: 14, lineHeight: 1.6, color: '#333' },
                 dangerouslySetInnerHTML: {
                   __html: rulesText,
                 },
               })
+            ) : (
+              <p style={{ color: '#888', textAlign: 'center', marginTop: 40 }}>
+                Условия тарифа не предоставлены авиакомпанией
+              </p>
             )}
           </div>
         </div>

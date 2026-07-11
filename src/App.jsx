@@ -54,10 +54,8 @@ function App() {
 
   useEffect(() => {
     dispatch(paramsAction());
-    if (local) {
-      dispatch(airParamsAction({ code: "", head: headers }));
-    }
-  }, [local]);
+    dispatch(airParamsAction(""));
+  }, []);
 
   useEffect(() => {
     if (local) {

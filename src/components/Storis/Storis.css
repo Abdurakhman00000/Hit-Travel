@@ -40,7 +40,7 @@
     max-width: none;
     width: 100%;
     min-height: 68px;
-    padding-top: 50px;
+    padding-top: calc(env(safe-area-inset-top, 0px) + 8px);
     padding-bottom: 2px;
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
   }
