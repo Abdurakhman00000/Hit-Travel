@@ -55,7 +55,7 @@ const RHConfirm = () => {
 
   return (
     <div className="rh_confirm_page">
-      <Header title="Статус бронирования" back={false} />
+      <Header back={false}><h1>Статус бронирования</h1></Header>
 
       <div className="rh_confirm_container">
         {status === "polling" && (

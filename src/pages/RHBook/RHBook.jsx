@@ -89,7 +89,7 @@ const RHBook = ({ Alert }) => {
 
   return (
     <div className="rh_book_page">
-      <Header title="Оформление" />
+      <Header><h1>Оформление</h1></Header>
 
       {/* Summary */}
       <div className="rh_book_summary">

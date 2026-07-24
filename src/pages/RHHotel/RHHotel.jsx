@@ -69,11 +69,12 @@ const RHHotel = ({ Alert }) => {
 
   const handleConfirmBook = async () => {
     if (!prebooking) return;
-    const result = await dispatch(rhPrebookAction(prebooking.rate.match_hash, local));
+    const result = await dispatch(rhPrebookAction(prebooking.rate.book_hash, local));
     if (result) {
       const pt = prebooking.pt;
+      const finalHash = result.hotels?.[0]?.rates?.[0]?.book_hash || prebooking.rate.book_hash;
       const p = new URLSearchParams({
-        book_hash: result.book_hash || prebooking.rate.match_hash,
+        book_hash: finalHash,
         hotel_id: hotelId,
         hotel_name: hotelInfo?.name || hotelId,
         checkin,
@@ -94,7 +95,7 @@ const RHHotel = ({ Alert }) => {
 
   return (
     <div className="rh_hotel_page">
-      <Header title={hotelInfo?.name || "Отель"} />
+      <Header><h1>{hotelInfo?.name || "Отель"}</h1></Header>
 
       {/* Hotel Info Block */}
       {/* Photos */}
