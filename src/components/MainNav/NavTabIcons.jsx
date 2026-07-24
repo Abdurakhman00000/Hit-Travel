@@ -30,7 +30,14 @@ export function IconHotels() {
 }
 
 export function IconAuthorTours() {
-  return <MdOutlineExplore size={40} color="#2EA4CC" />;
+  return (
+    <MdOutlineExplore
+      className="nav_tab_img nav_tab_img_svg"
+      color="#026ed2"
+      size={40}
+      aria-hidden="true"
+    />
+  );
 }
 
 export function IconHotTours() {

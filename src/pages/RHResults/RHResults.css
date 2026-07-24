@@ -1,0 +1,121 @@
+.hotels .body_block {
+  width: 100%;
+  min-height: 50px;
+  border-radius: 3px;
+  background: var(--unnamed, #fdfdfd);
+  box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.15);
+  transition: 0.2s ease;
+  margin-bottom: 12px;
+  cursor: pointer;
+}
+
+.hotels .body_block .img {
+  border-radius: 3px 3px 0 0 !important;
+  width: 100% !important;
+  height: 230px !important;
+  object-fit: cover !important;
+  object-position: center !important;
+  display: block;
+}
+
+.hotels .rhr_no_photo {
+  background: #d9e4f0;
+}
+
+.hotels .content_home {
+  padding: 8px;
+}
+
+.hotels .content {
+  width: 100%;
+}
+
+.hotels .conntent_block_one .icon {
+  color: gold;
+  margin-right: 3px;
+}
+
+.hotels .conntent_block_one h1 {
+  color: var(--unnamed, #081f2c);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.hotels .conntent_block_two {
+  display: grid;
+  grid-template-columns: 3.5fr 0.5fr;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.hotels .conntent_block_two .rate {
+  padding: 5px 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 3px;
+  background: var(--blue);
+  align-self: start;
+  white-space: nowrap;
+}
+
+.hotels .body_block p {
+  color: var(--unnamed, #081f2c);
+  font-size: 14px;
+  font-weight: 300;
+}
+
+.hotels .hr {
+  width: 100%;
+  height: 1px;
+  background: rgba(0, 0, 0, 0.1);
+  margin: 15px 0;
+}
+
+.hotels .price {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 7px;
+}
+
+.hotels .price h1 {
+  text-align: end;
+  color: var(--unnamed, #081f2c);
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.hotels .top {
+  font-size: 14px;
+  line-height: 1;
+  height: 20px;
+  overflow: hidden;
+}
+
+.hotels .not_found {
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hotels .not_found h1 {
+  font-size: 20px;
+  font-weight: 500;
+  color: #081f2c;
+}
+
+.rhr_loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 60px 20px;
+  gap: 16px;
+  color: #888;
+  font-size: 15px;
+}

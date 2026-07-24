@@ -425,6 +425,61 @@ const MainNav = ({
     }
   }
 
+  async function handleHotelSearch() {
+    if (!countryData.name || countryData.name === "Выберите страну") {
+      Alert("Выберите направление", "error"); return;
+    }
+    if (!dateNightFrom || !dateNightTo) {
+      Alert("Выберите даты", "error"); return;
+    }
+
+    const RU_TO_EN = {
+      "Турция": "Turkey", "Таиланд": "Thailand", "ОАЭ": "Dubai",
+      "Египет": "Egypt", "Мальдивы": "Maldives", "Греция": "Greece",
+      "Испания": "Spain", "Италия": "Italy", "Франция": "Paris",
+      "Россия": "Moscow", "Кыргызстан": "Bishkek", "Казахстан": "Almaty",
+      "Узбекистан": "Tashkent", "Грузия": "Tbilisi", "Азербайджан": "Baku",
+      "Индонезия": "Bali", "Вьетнам": "Hanoi", "Индия": "Goa",
+      "Шри-Ланка": "Colombo", "Марокко": "Marrakech", "Тунис": "Tunis",
+      "Израиль": "Tel Aviv", "Кипр": "Limassol", "Черногория": "Budva",
+      "Хорватия": "Dubrovnik", "Португалия": "Lisbon", "Германия": "Berlin",
+      "США": "Los Angeles", "Куба": "Havana", "Мексика": "Cancun",
+      "Доминикана": "Punta Cana",
+    };
+
+    const tryQuery = async (q, lang) => {
+      const res = await axios.get(`${url}/ratehawk/suggest/`, { params: { q, lang } });
+      const d = res.data || {};
+      return [...(d.regions || []), ...(d.hotels || [])];
+    };
+
+    try {
+      let results = await tryQuery(countryData.name, "ru");
+
+      if (!results.length) {
+        const en = RU_TO_EN[countryData.name];
+        if (en) results = await tryQuery(en, "en");
+      }
+
+      if (!results.length) {
+        Alert("Направление не найдено. Попробуйте выбрать другую страну.", "error"); return;
+      }
+
+      const region = results[0];
+      const p = new URLSearchParams({
+        region_id: region.id,
+        region_name: region.name || countryData.name,
+        checkin: dateNightFrom,
+        checkout: dateNightTo,
+        adults: count.count1 || 2,
+        stars: selectedStars || 0,
+      });
+      navigate(`/rh-results?${p.toString()}`);
+    } catch {
+      Alert("Ошибка поиска отелей", "error");
+    }
+  }
+
   function divEnd(el) {
     switch (el) {
       case "hotel":
@@ -855,7 +910,7 @@ const MainNav = ({
               </div> */}
             </div>
             <button
-              onClick={() => Redirect({ hotel: true })}
+              onClick={handleHotelSearch}
               className="button_form"
             >
               Найти отели
@@ -1096,11 +1151,13 @@ const MainNav = ({
               <div className="map_mest_travel">
                 {filteredDatasCountry.map((el) => (
                   <div
-                    onClick={() =>
-                      funcCountry(el) ||
-                      setModal(false) ||
-                      setResortModal({ ...resortModal, closeDiv: true })
-                    }
+                    onClick={() => {
+                      funcCountry(el);
+                      setModal(false);
+                      if (!hotelDiv?.hotel) {
+                        setResortModal({ ...resortModal, closeDiv: true });
+                      }
+                    }}
                     key={el.id}
                     className="mest cursor"
                   >

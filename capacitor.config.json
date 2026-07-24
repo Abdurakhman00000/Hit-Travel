@@ -1,5 +1,13 @@
 {
   "appId": "kg.hittravel.app",
   "appName": "Hit Travel",
-  "webDir": "build"
+  "webDir": "build",
+  "server": {
+    "allowNavigation": [
+      "tourvisor.ru",
+      "*.tourvisor.ru",
+      "hit-travel.org",
+      "77.232.128.174"
+    ]
+  }
 }

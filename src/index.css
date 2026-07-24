@@ -194,6 +194,12 @@ a {
   animation: openPage 0.3s ease;
 }
 
+/* don't fight bottom-sheet slide animations */
+.App .htkz,
+.App .htkz * {
+  animation: none;
+}
+
 @keyframes openPage {
   0% {
     opacity: 0;

@@ -1,0 +1,129 @@
+.rhs_dest_panel {
+  margin-top: 10px;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  padding-top: 10px;
+}
+
+.rhs_dest_input {
+  width: 100%;
+  padding: 10px 12px;
+  font-size: 15px;
+  font-weight: 400;
+  border-radius: 3px;
+  border: 1px solid var(--blue);
+  outline: none;
+  color: #081f2c;
+  box-sizing: border-box;
+}
+
+.rhs_suggest_list {
+  margin-top: 6px;
+  border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  background: #fff;
+}
+
+.rhs_suggest_item {
+  padding: 11px 12px;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  font-size: 14px;
+  color: #081f2c;
+}
+
+.rhs_suggest_item:active {
+  background: #f0f5ff;
+}
+
+.rhs_suggest_name {
+  font-weight: 500;
+}
+
+.rhs_suggest_sub {
+  color: #888;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.rhs_date_panel {
+  background: #f9f9f9;
+  border-radius: 3px;
+  padding: 12px 14px;
+  margin-top: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.rhs_date_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.rhs_date_label {
+  font-size: 14px;
+  color: #081f2c;
+  font-weight: 400;
+}
+
+.rhs_date_input {
+  padding: 8px 10px;
+  font-size: 14px;
+  border-radius: 3px;
+  border: 1px solid var(--blue);
+  outline: none;
+  color: #081f2c;
+}
+
+.rhs_guests_panel {
+  background: #f9f9f9;
+  border-radius: 3px;
+  padding: 12px 14px;
+  margin-top: 8px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.rhs_guests_row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 15px;
+  color: #081f2c;
+  margin-bottom: 12px;
+}
+
+.rhs_counter {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.rhs_counter_btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--blue);
+  background: #fff;
+  color: var(--blue);
+  font-size: 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
+.rhs_counter_val {
+  font-size: 18px;
+  font-weight: 500;
+  color: #081f2c;
+  min-width: 20px;
+  text-align: center;
+}
+
+.rhs_done_btn {
+  margin-top: 4px;
+  height: 40px;
+  font-size: 14px;
+}

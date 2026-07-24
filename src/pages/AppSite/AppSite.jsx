@@ -32,6 +32,11 @@ import DetailMyHotel from "../DetailMyHotel/DetailMyHotel";
 import PackegeTour from "../PackageTour/PackageTour";
 import Insurance from "../Insurance/Insurance";
 import PaymentSuccess from "../PaymentSuccess/PaymentSuccess";
+import RHSearch from "../RHSearch/RHSearch";
+import RHResults from "../RHResults/RHResults";
+import RHHotel from "../RHHotel/RHHotel";
+import RHBook from "../RHBook/RHBook";
+import RHConfirm from "../RHConfirm/RHConfirm";
 
 const bishkek = {
   id: 80,
@@ -796,6 +801,11 @@ const AppSite = ({ local, Alert }) => {
             />
           }
         />
+        <Route path="rh-search" element={<RHSearch Alert={Alert} />} />
+        <Route path="rh-results" element={<RHResults Alert={Alert} />} />
+        <Route path="rh-hotel" element={<RHHotel Alert={Alert} />} />
+        <Route path="rh-book" element={<RHBook Alert={Alert} />} />
+        <Route path="rh-confirm" element={<RHConfirm />} />
         <Route path="payment" element={<Payment Alert={Alert} />} />
         <Route path="payment/success" element={<PaymentSuccess />} />
         <Route path="payment/:m" element={<Payment Alert={Alert} />} />

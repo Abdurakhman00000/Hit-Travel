@@ -16,6 +16,7 @@ import deepReducer from "./deepReducer";
 import aviaDateReducer from "./aviaDateReducer";
 import conditionsReducer from "./conditionsReducer";
 import insuranceReducer from "./insuranceReducer";
+import ratehawkReducer from "./ratehawkReducer";
 
 const rootReducer = combineReducers({
   search: searchReducer,
@@ -35,6 +36,7 @@ const rootReducer = combineReducers({
   avia_date: aviaDateReducer,
   conditions: conditionsReducer,
   insurance: insuranceReducer,
+  ratehawk: ratehawkReducer,
 });
 
 export default rootReducer;
